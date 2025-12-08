@@ -12,11 +12,10 @@
       --accent-blue: #29abe2;
       --accent-green: #4ade80;
       --accent-orange: #ffb347;
-      --accent-burn: #ff6b6b;
+      --accent-burn: #ff4b6b;
       --metal-dark: #222738;
       --metal-mid: #434a63;
       --metal-light: #aab3d8;
-      --glass-edge: rgba(255, 255, 255, 0.28);
       --glass-highlight: rgba(255, 255, 255, 0.6);
       --text-soft: #c8d2ff;
     }
@@ -45,11 +44,11 @@
       margin: 0 auto;
     }
 
-    /* Header ====================================== */
+    /* Header -------------------------------------------------- */
 
     .hub-header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hub-title {
@@ -66,12 +65,12 @@
       opacity: 0.9;
     }
 
-    /* Pannello centrale (sfondo delle macchine) === */
+    /* Pannello centrale ---------------------------------------- */
 
     .hub-panel {
       position: relative;
       margin-top: 24px;
-      padding: 36px 42px 30px;
+      padding: 40px 46px 32px;
       border-radius: 24px;
       background:
         radial-gradient(circle at 20% 0, rgba(58, 119, 255, 0.25), transparent 55%),
@@ -83,7 +82,7 @@
       overflow: visible;
     }
 
-    /* Griglia macchine ============================ */
+    /* Griglia macchine ---------------------------------------- */
 
     .machines-grid {
       display: grid;
@@ -91,56 +90,12 @@
       gap: 40px;
       align-items: flex-end;
       position: relative;
-      padding-top: 36px;
+      padding-top: 30px;
     }
-
-    /* Tubazioni tra le macchine =================== */
-
-    .pipe-horizontal {
-      position: absolute;
-      height: 22px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #cfd4f0, #a8b0d8);
-      box-shadow:
-        inset 0 0 4px rgba(255, 255, 255, 0.45),
-        0 8px 16px rgba(0, 0, 0, 0.65);
-    }
-
-    .pipe-horizontal.pipe-left-center {
-      width: 230px;
-      left: 23%;
-      top: 54%;
-      transform: translateX(-40px);
-    }
-
-    .pipe-horizontal.pipe-center-right {
-      width: 230px;
-      right: 23%;
-      top: 54%;
-      transform: translateX(40px);
-    }
-
-    .pipe-node {
-      position: absolute;
-      top: 50%;
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #fff9e3, #ffb347 50%, #c77024 80%);
-      box-shadow:
-        0 0 16px rgba(255, 190, 80, 0.8),
-        0 4px 10px rgba(0, 0, 0, 0.7);
-      transform: translate(-50%, -50%);
-    }
-
-    .pipe-left-center .pipe-node { right: 24px; }
-    .pipe-center-right .pipe-node { left: 24px; }
-
-    /* Macchina base =============================== */
 
     .machine {
       position: relative;
-      height: 320px;
+      height: 290px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -149,13 +104,13 @@
 
     .machine-header {
       position: absolute;
-      top: -32px;
+      top: -30px;
       text-align: center;
       font-size: 0.78rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-soft);
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     .machine-header span {
@@ -185,15 +140,13 @@
       background: linear-gradient(180deg, #252c42, #101321);
     }
 
-    /* Vetro cilindrico ============================ */
-
     .machine-tank {
       position: absolute;
       left: 50%;
       bottom: 48px;
       transform: translateX(-50%);
       width: 150px;
-      height: 230px;
+      height: 220px;
       border-radius: 80px;
       background: linear-gradient(180deg, #111829, #060915);
       box-shadow:
@@ -231,9 +184,6 @@
     .machine-liquid--green {
       background: radial-gradient(circle at 50% 0, var(--glass-highlight), transparent 55%),
         linear-gradient(180deg, rgba(138, 255, 200, 0.9), rgba(0, 170, 105, 0.98));
-      box-shadow:
-        0 -3px 10px rgba(255, 255, 255, 0.3),
-        0 12px 24px rgba(0, 0, 0, 0.9);
     }
 
     .machine-tank-inner--vault {
@@ -253,8 +203,6 @@
       border: 1px dashed rgba(255, 240, 190, 0.5);
       opacity: 0.7;
     }
-
-    /* Cappello ==================================== */
 
     .machine-cap {
       position: absolute;
@@ -279,54 +227,67 @@
       background: linear-gradient(180deg, #5d6683, #262b3a);
     }
 
-    /* SWAP: monete N che entrano ================== */
+    /* Tubazioni orizzontali ---------------------------------- */
 
-    .swap-stream {
+    .pipe-horizontal {
       position: absolute;
-      left: 8%;
-      top: -26px;
-      width: 120px;
-      height: 120px;
-      border-radius: 999px 999px 20px 120px;
-      background: linear-gradient(120deg, rgba(160, 220, 255, 0.3), transparent 70%);
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #cfd4f0, #a8b0d8);
       box-shadow:
-        0 0 18px rgba(120, 220, 255, 0.4);
-      overflow: visible;
+        inset 0 0 4px rgba(255, 255, 255, 0.45),
+        0 8px 16px rgba(0, 0, 0, 0.65);
     }
 
-    .swap-coin {
+    /* sinistra -> centro: con BTC che si muove */
+    .pipe-horizontal.pipe-left-center {
+      width: 230px;
+      left: 23%;
+      top: 52%;
+      transform: translateX(-40px);
+      overflow: hidden;
+    }
+
+    .btc-flow {
       position: absolute;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #d2e7ff 45%, #8cb8ff 85%);
+      top: 2px;
+      width: 28px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #ffe7b0 50%, #ffb347 80%);
       box-shadow:
-        0 0 10px rgba(150, 210, 255, 0.8),
-        0 4px 12px rgba(0, 0, 0, 0.85);
+        0 0 10px rgba(255, 188, 80, 0.9),
+        0 3px 6px rgba(0, 0, 0, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.9rem;
-      color: #1b2852;
+      color: #1b130a;
       font-weight: 700;
-      animation: swapFlow 3.2s ease-in-out infinite;
+      animation: btcMove 3s linear infinite;
     }
 
-    .swap-coin:nth-child(1) { left: 6px; top: 8px; animation-delay: 0s; }
-    .swap-coin:nth-child(2) { left: 38px; top: -10px; animation-delay: 0.4s; }
-    .swap-coin:nth-child(3) { left: 72px; top: -22px; animation-delay: 0.8s; }
-
-    @keyframes swapFlow {
-      0% { transform: translateY(0); opacity: 0; }
-      10% { opacity: 1; }
-      60% { transform: translate(40px, 40px); opacity: 1; }
-      100% { transform: translate(60px, 70px); opacity: 0; }
+    @keyframes btcMove {
+      0%   { transform: translateX(-40px); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { transform: translateX(210px); opacity: 1; }
+      100% { transform: translateX(230px); opacity: 0; }
     }
 
+    /* centro -> destra: tubo vuoto statico */
+    .pipe-horizontal.pipe-center-right {
+      width: 230px;
+      right: 23%;
+      top: 52%;
+      transform: translateX(40px);
+      opacity: 0.9;
+    }
+
+    /* badge BTC accanto al tank sinistro */
     .btc-badge {
       position: absolute;
       left: -24px;
-      top: 42%;
+      top: 43%;
       width: 52px;
       height: 52px;
       border-radius: 50%;
@@ -343,11 +304,55 @@
       font-weight: 700;
     }
 
-    /* VAULT: badge tBTC Treasury in alto ========= */
+    /* SWAP: monete N che entrano ------------------------------ */
+
+    .swap-stream {
+      position: absolute;
+      left: 6%;
+      top: -28px;
+      width: 130px;
+      height: 115px;
+      border-radius: 999px 999px 20px 120px;
+      background: linear-gradient(120deg, rgba(160, 220, 255, 0.3), transparent 70%);
+      box-shadow:
+        0 0 18px rgba(120, 220, 255, 0.35);
+      overflow: visible;
+    }
+
+    .swap-coin {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #d2e7ff 45%, #8cb8ff 85%);
+      box-shadow:
+        0 0 10px rgba(150, 210, 255, 0.8),
+        0 4px 12px rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #1b2852;
+      font-weight: 700;
+      animation: swapFlow 3.2s ease-in-out infinite;
+    }
+
+    .swap-coin:nth-child(1) { left: 6px; top: 8px; animation-delay: 0s; }
+    .swap-coin:nth-child(2) { left: 42px; top: -10px; animation-delay: 0.4s; }
+    .swap-coin:nth-child(3) { left: 80px; top: -24px; animation-delay: 0.8s; }
+
+    @keyframes swapFlow {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      60% { transform: translate(40px, 36px); opacity: 1; }
+      100% { transform: translate(60px, 64px); opacity: 0; }
+    }
+
+    /* VAULT badge centrale ------------------------------------ */
 
     .vault-badge {
       position: absolute;
-      top: -52px;
+      top: -54px;
       left: 50%;
       transform: translateX(-50%);
       width: 96px;
@@ -373,27 +378,27 @@
       margin-top: 2px;
     }
 
-    /* BURN: fiamma & frammenti ==================== */
+    /* BURN: fiamma rossa intermittente ----------------------- */
 
     .burn-fire {
       position: absolute;
       left: 50%;
-      bottom: 25%;
+      bottom: 24%;
       transform: translateX(-50%);
-      width: 72px;
+      width: 74px;
       height: 96px;
       background:
-        radial-gradient(circle at 30% 15%, rgba(255, 255, 255, 0.95), transparent 50%),
-        radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.85), transparent 55%),
-        radial-gradient(circle at 50% 80%, #ff6b3b, transparent 60%);
+        radial-gradient(circle at 30% 15%, rgba(255, 255, 255, 0.95), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(255, 200, 200, 0.9), transparent 60%),
+        radial-gradient(circle at 50% 80%, #ff3030, transparent 60%);
       mix-blend-mode: screen;
       filter: blur(1px);
       opacity: 0.9;
-      animation: burnPulse 2.3s ease-in-out infinite alternate;
+      animation: burnPulse 1.8s ease-in-out infinite alternate;
     }
 
     @keyframes burnPulse {
-      0% { transform: translateX(-50%) scaleY(1); opacity: 0.75; }
+      0% { transform: translateX(-50%) scaleY(0.96); opacity: 0.7; }
       100% { transform: translateX(-50%) scaleY(1.08); opacity: 1; }
     }
 
@@ -406,21 +411,101 @@
       box-shadow:
         0 0 6px rgba(255, 255, 255, 0.9),
         0 3px 6px rgba(0, 0, 0, 0.9);
-      animation: fragFall 2.4s linear infinite;
+      animation: fragFall 2.2s linear infinite;
     }
 
-    .burn-frag:nth-child(1) { left: 52%; top: 8%; animation-delay: 0s; }
-    .burn-frag:nth-child(2) { left: 60%; top: 0%; animation-delay: 0.5s; }
-    .burn-frag:nth-child(3) { left: 44%; top: -4%; animation-delay: 0.9s; }
+    .burn-frag:nth-child(1) { left: 52%; top: 6%; animation-delay: 0s; }
+    .burn-frag:nth-child(2) { left: 60%; top: -2%; animation-delay: 0.4s; }
+    .burn-frag:nth-child(3) { left: 44%; top: -6%; animation-delay: 0.8s; }
 
     @keyframes fragFall {
       0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
       10%  { opacity: 1; }
-      80%  { transform: translateY(48px) rotate(18deg); opacity: 1; }
-      100% { transform: translateY(64px) rotate(26deg); opacity: 0; }
+      80%  { transform: translateY(46px) rotate(18deg); opacity: 1; }
+      100% { transform: translateY(62px) rotate(26deg); opacity: 0; }
     }
 
-    /* Barra verticale di “supply” a destra ======= */
+    /* Tubo + badge Torrino DAO che alimenta il burn ---------- */
+
+    .dao-badge {
+      position: absolute;
+      right: 200px;
+      top: 40px;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 15%, #ffffff, #8df7ff 45%, #35d1a3 70%, #101322 92%);
+      box-shadow:
+        0 0 26px rgba(80, 255, 195, 0.8),
+        0 10px 22px rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e9f7ff;
+    }
+
+    .dao-badge span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .dao-pipe {
+      position: absolute;
+      right: 222px;
+      top: 100px;
+      width: 22px;
+      height: 110px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #cfd4f0, #9aa4c8);
+      box-shadow:
+        inset 0 0 4px rgba(255, 255, 255, 0.5),
+        0 10px 18px rgba(0, 0, 0, 0.85);
+      overflow: hidden;
+    }
+
+    .dao-pipe::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -8px;
+      transform: translateX(50%);
+      width: 40px;
+      height: 20px;
+      border-radius: 0 20px 20px 0;
+      background: linear-gradient(90deg, #cfd4f0, #9aa4c8);
+      box-shadow:
+        inset 0 0 4px rgba(255, 255, 255, 0.4),
+        0 6px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .dao-coin {
+      position: absolute;
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle at 30% 30%, #ffffff, #d2e7ff 45%, #8cb8ff 85%);
+      box-shadow:
+        0 0 8px rgba(150, 210, 255, 0.9),
+        0 3px 6px rgba(0, 0, 0, 0.75);
+      animation: daoDrop 2.3s linear infinite;
+    }
+
+    @keyframes daoDrop {
+      0%   { top: -10px; opacity: 0; }
+      10%  { opacity: 1; }
+      80%  { top: 76px; opacity: 1; }
+      100% { top: 92px; opacity: 0; }
+    }
+
+    /* Barra supply a destra (la teniamo) ---------------------- */
 
     .supply-bar {
       position: absolute;
@@ -454,52 +539,69 @@
       100% { opacity: 1; transform: translateY(-4px); }
     }
 
-    /* Testo descrittivo sotto le macchine ========= */
+    /* Descrizioni sotto ai contenitori ------------------------ */
 
-    .machine-desc {
-      margin-top: 18px;
-      font-size: 0.78rem;
-      color: rgba(203, 213, 255, 0.92);
+    .machines-descriptions {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
       text-align: center;
-      max-width: 260px;
+      font-size: 0.8rem;
+      color: rgba(203, 213, 255, 0.95);
+    }
+
+    .machines-descriptions p {
+      max-width: 280px;
+      margin: 0 auto;
       line-height: 1.5;
     }
+
   </style>
 </head>
 
 <body>
   <div class="hub-root">
     <header class="hub-header">
-      <div class="hub-title">Nummus Aeternitas: The Meme Coin with a Bitcoin Engine</div>
+      <div class="hub-title">NUMMUS AETERNITAS: THE MEME COIN WITH A BITCOIN ENGINE</div>
       <div class="hub-subtitle">
         Swap → Vault → Burn: il flusso di valore tra wallet tBTC, tesoreria e riduzione della supply.
       </div>
     </header>
 
     <main class="hub-panel">
-      <!-- Barra supply verticale a destra -->
+      <!-- barra supply -->
       <div class="supply-bar">
         <div class="supply-fill"></div>
       </div>
 
-      <!-- Tubi orizzontali -->
-      <div class="pipe-horizontal pipe-left-center">
-        <div class="pipe-node"></div>
+      <!-- Torrino DAO che alimenta il burn -->
+      <div class="dao-badge">
+        TORRINO
+        <span>DAO</span>
       </div>
-      <div class="pipe-horizontal pipe-center-right">
-        <div class="pipe-node"></div>
+      <div class="dao-pipe">
+        <div class="dao-coin"></div>
       </div>
 
-      <!-- Macchine -->
+      <!-- tubo sinistra -> centro con BTC -->
+      <div class="pipe-horizontal pipe-left-center">
+        <div class="btc-flow">₿</div>
+      </div>
+
+      <!-- tubo centro -> destra vuoto -->
+      <div class="pipe-horizontal pipe-center-right"></div>
+
+      <!-- 3 macchine -->
       <section class="machines-grid">
-        <!-- LEFT: Swap Engine -->
+        <!-- Swap Engine -->
         <article class="machine machine-left">
           <div class="machine-header">
             Swap Engine
             <span>Building the BTC Reserve</span>
           </div>
 
-          <!-- stream di monete N -->
+          <!-- N che entrano -->
           <div class="swap-stream">
             <div class="swap-coin">N</div>
             <div class="swap-coin">N</div>
@@ -510,20 +612,14 @@
           <div class="btc-badge">₿</div>
 
           <div class="machine-tank">
-            <div class="machine-tank-inner machine-tank-inner--swap"></div>
+            <div class="machine-tank-inner"></div>
             <div class="machine-liquid machine-liquid--green"></div>
           </div>
-
           <div class="machine-cap"></div>
           <div class="machine-base"></div>
-
-          <p class="machine-desc">
-            Gli swap di Nummus in tBTC alimentano la riserva Bitcoin, che confluisce nel
-            wallet di accumulo.
-          </p>
         </article>
 
-        <!-- CENTER: Vault -->
+        <!-- Vault -->
         <article class="machine machine-center">
           <div class="machine-header">
             tBTC Vault
@@ -539,16 +635,11 @@
             <div class="machine-tank-inner machine-tank-inner--vault"></div>
             <div class="machine-vault-shape"></div>
           </div>
-
           <div class="machine-cap"></div>
           <div class="machine-base"></div>
-
-          <p class="machine-desc">
-            Il tBTC accumulato diventa la tesoreria verificabile on-chain di Nummus, custodiata nel vault.
-          </p>
         </article>
 
-        <!-- RIGHT: Burn Engine -->
+        <!-- Burn Engine -->
         <article class="machine machine-right">
           <div class="machine-header">
             Burn Engine
@@ -559,21 +650,32 @@
             <div class="machine-tank-inner"></div>
             <div class="machine-liquid"></div>
 
-            <!-- fiamma -->
+            <!-- fuoco rosso -->
             <div class="burn-fire"></div>
             <!-- frammenti che cadono -->
             <div class="burn-frag"></div>
             <div class="burn-frag"></div>
             <div class="burn-frag"></div>
           </div>
-
           <div class="machine-cap"></div>
           <div class="machine-base"></div>
-
-          <p class="machine-desc">
-            La Torrino DAO riacquista Nummus dal mercato e li invia al burn, riducendo in modo permanente la supply.
-          </p>
         </article>
+      </section>
+
+      <!-- descrizioni sotto ai contenitori -->
+      <section class="machines-descriptions">
+        <p>
+          Gli swap di Nummus in tBTC alimentano la riserva Bitcoin, che confluisce nel wallet
+          di accumulo.
+        </p>
+        <p>
+          Il tBTC accumulato diventa la tesoreria verificabile on-chain di Nummus, custodita
+          nel Vault.
+        </p>
+        <p>
+          La Torrino DAO riacquista Nummus dal mercato e li invia al burn, riducendo in modo
+          permanente la supply.
+        </p>
       </section>
     </main>
   </div>
