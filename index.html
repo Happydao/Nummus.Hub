@@ -8,7 +8,6 @@
   <style>
     :root {
       --bg-main: #050816;
-      --bg-panel: #0b1022;
       --accent-blue: #29abe2;
       --accent-green: #4ade80;
       --accent-orange: #ffb347;
@@ -87,10 +86,10 @@
     .machines-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 40px;
+      gap: 60px;
       align-items: flex-end;
       position: relative;
-      padding-top: 30px;
+      padding: 20px 10px 0;
     }
 
     .machine {
@@ -122,28 +121,41 @@
 
     .machine-base {
       position: relative;
-      width: 200px;
-      height: 48px;
+      width: 210px;
+      height: 52px;
       border-radius: 18px;
       background: linear-gradient(180deg, var(--metal-mid), #141722);
       box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.9),
         inset 0 2px 3px rgba(255, 255, 255, 0.2),
         inset 0 -4px 6px rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .machine-base::before {
       content: "";
       position: absolute;
-      inset: 6px 20px;
+      inset: 6px 22px;
       border-radius: 14px;
       background: linear-gradient(180deg, #252c42, #101321);
+    }
+
+    .base-label {
+      position: relative;
+      z-index: 1;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #e2e7ff;
+      opacity: 0.9;
     }
 
     .machine-tank {
       position: absolute;
       left: 50%;
-      bottom: 48px;
+      bottom: 52px;
       transform: translateX(-50%);
       width: 150px;
       height: 220px;
@@ -204,10 +216,23 @@
       opacity: 0.7;
     }
 
+    /* sinistra: cupola un po' più aperta */
+    .machine-left .machine-tank {
+      border-radius: 80px 80px 40px 40px;
+    }
+    .machine-left .machine-tank-inner {
+      border-radius: 72px 72px 34px 34px;
+    }
+
+    /* destra: niente liquido blu */
+    .machine-right .machine-liquid {
+      display: none;
+    }
+
     .machine-cap {
       position: absolute;
       left: 50%;
-      bottom: 48px;
+      bottom: 52px;
       transform: translate(-50%, 55%);
       width: 170px;
       height: 36px;
@@ -227,7 +252,7 @@
       background: linear-gradient(180deg, #5d6683, #262b3a);
     }
 
-    /* Tubazioni orizzontali ---------------------------------- */
+    /* tubi orizzontali --------------------------------------- */
 
     .pipe-horizontal {
       position: absolute;
@@ -239,15 +264,25 @@
         0 8px 16px rgba(0, 0, 0, 0.65);
     }
 
-    /* sinistra -> centro: con BTC che si muove */
+    /* sinistra -> centro, ora allungato fino ai tank */
     .pipe-horizontal.pipe-left-center {
-      width: 230px;
-      left: 23%;
-      top: 52%;
-      transform: translateX(-40px);
+      width: 310px;
+      left: 50%;
+      top: 53%;
+      transform: translateX(-240px);
       overflow: hidden;
     }
 
+    /* centro -> destra, allungato fino ai tank */
+    .pipe-horizontal.pipe-center-right {
+      width: 310px;
+      left: 50%;
+      top: 53%;
+      transform: translateX( -10px);
+      opacity: 0.9;
+    }
+
+    /* due monete BTC che scorrono nel tubo sinistra->centro */
     .btc-flow {
       position: absolute;
       top: 2px;
@@ -266,21 +301,14 @@
       font-weight: 700;
       animation: btcMove 3s linear infinite;
     }
+    .btc-flow:nth-child(1) { animation-delay: 0s; }
+    .btc-flow:nth-child(2) { animation-delay: 1.5s; }
 
     @keyframes btcMove {
       0%   { transform: translateX(-40px); opacity: 0; }
       10%  { opacity: 1; }
-      90%  { transform: translateX(210px); opacity: 1; }
-      100% { transform: translateX(230px); opacity: 0; }
-    }
-
-    /* centro -> destra: tubo vuoto statico */
-    .pipe-horizontal.pipe-center-right {
-      width: 230px;
-      right: 23%;
-      top: 52%;
-      transform: translateX(40px);
-      opacity: 0.9;
+      90%  { transform: translateX(280px); opacity: 1; }
+      100% { transform: translateX(300px); opacity: 0; }
     }
 
     /* badge BTC accanto al tank sinistro */
@@ -348,37 +376,7 @@
       100% { transform: translate(60px, 64px); opacity: 0; }
     }
 
-    /* VAULT badge centrale ------------------------------------ */
-
-    .vault-badge {
-      position: absolute;
-      top: -54px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 30% 15%, #ffffff, #8dd6ff 45%, #3070ff 75%, #101322 90%);
-      box-shadow:
-        0 0 30px rgba(80, 210, 255, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 0.55rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #e9f7ff;
-    }
-
-    .vault-badge span {
-      font-size: 0.7rem;
-      font-weight: 600;
-      margin-top: 2px;
-    }
-
-    /* BURN: fiamma rossa intermittente ----------------------- */
+    /* BURN: fiamma rossa ------------------------------------- */
 
     .burn-fire {
       position: absolute;
@@ -425,14 +423,14 @@
       100% { transform: translateY(62px) rotate(26deg); opacity: 0; }
     }
 
-    /* Tubo + badge Torrino DAO che alimenta il burn ---------- */
+    /* Torrino DAO: badge + tubo verticale con monete N ------- */
 
     .dao-badge {
       position: absolute;
-      right: 200px;
-      top: 40px;
-      width: 86px;
-      height: 86px;
+      right: 230px;
+      top: 38px;
+      width: 92px;
+      height: 92px;
       border-radius: 50%;
       background:
         radial-gradient(circle at 30% 15%, #ffffff, #8df7ff 45%, #35d1a3 70%, #101322 92%);
@@ -447,6 +445,7 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: #e9f7ff;
+      text-align: center;
     }
 
     .dao-badge span {
@@ -457,10 +456,10 @@
 
     .dao-pipe {
       position: absolute;
-      right: 222px;
-      top: 100px;
-      width: 22px;
-      height: 110px;
+      right: 255px;
+      top: 110px;
+      width: 24px;
+      height: 140px;
       border-radius: 16px;
       background: linear-gradient(180deg, #cfd4f0, #9aa4c8);
       box-shadow:
@@ -473,11 +472,11 @@
       content: "";
       position: absolute;
       left: 50%;
-      bottom: -8px;
+      bottom: -10px;
       transform: translateX(50%);
-      width: 40px;
-      height: 20px;
-      border-radius: 0 20px 20px 0;
+      width: 60px;
+      height: 22px;
+      border-radius: 0 22px 22px 0;
       background: linear-gradient(90deg, #cfd4f0, #9aa4c8);
       box-shadow:
         inset 0 0 4px rgba(255, 255, 255, 0.4),
@@ -487,25 +486,31 @@
     .dao-coin {
       position: absolute;
       left: 50%;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       transform: translateX(-50%);
       background: radial-gradient(circle at 30% 30%, #ffffff, #d2e7ff 45%, #8cb8ff 85%);
       box-shadow:
         0 0 8px rgba(150, 210, 255, 0.9),
         0 3px 6px rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #1b2852;
+      font-weight: 700;
       animation: daoDrop 2.3s linear infinite;
     }
 
     @keyframes daoDrop {
-      0%   { top: -10px; opacity: 0; }
+      0%   { top: -12px; opacity: 0; }
       10%  { opacity: 1; }
-      80%  { top: 76px; opacity: 1; }
-      100% { top: 92px; opacity: 0; }
+      80%  { top: 100px; opacity: 1; }
+      100% { top: 120px; opacity: 0; }
     }
 
-    /* Barra supply a destra (la teniamo) ---------------------- */
+    /* Barra supply a destra ---------------------------------- */
 
     .supply-bar {
       position: absolute;
@@ -539,10 +544,10 @@
       100% { opacity: 1; transform: translateY(-4px); }
     }
 
-    /* Descrizioni sotto ai contenitori ------------------------ */
+    /* Descrizioni sotto -------------------------------------- */
 
     .machines-descriptions {
-      margin-top: 26px;
+      margin-top: 30px;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 28px;
@@ -575,17 +580,18 @@
         <div class="supply-fill"></div>
       </div>
 
-      <!-- Torrino DAO che alimenta il burn -->
+      <!-- Torrino DAO: badge + tubo con monete N -->
       <div class="dao-badge">
         TORRINO
         <span>DAO</span>
       </div>
       <div class="dao-pipe">
-        <div class="dao-coin"></div>
+        <div class="dao-coin">N</div>
       </div>
 
-      <!-- tubo sinistra -> centro con BTC -->
+      <!-- tubo sinistra -> centro con due BTC -->
       <div class="pipe-horizontal pipe-left-center">
+        <div class="btc-flow">₿</div>
         <div class="btc-flow">₿</div>
       </div>
 
@@ -601,14 +607,12 @@
             <span>Building the BTC Reserve</span>
           </div>
 
-          <!-- N che entrano -->
           <div class="swap-stream">
             <div class="swap-coin">N</div>
             <div class="swap-coin">N</div>
             <div class="swap-coin">N</div>
           </div>
 
-          <!-- badge BTC -->
           <div class="btc-badge">₿</div>
 
           <div class="machine-tank">
@@ -616,7 +620,9 @@
             <div class="machine-liquid machine-liquid--green"></div>
           </div>
           <div class="machine-cap"></div>
-          <div class="machine-base"></div>
+          <div class="machine-base">
+            <div class="base-label">Swap Engine</div>
+          </div>
         </article>
 
         <!-- Vault -->
@@ -626,17 +632,14 @@
             <span>Decentralized Treasury</span>
           </div>
 
-          <div class="vault-badge">
-            VB
-            <span>tBTC VAULT</span>
-          </div>
-
           <div class="machine-tank">
             <div class="machine-tank-inner machine-tank-inner--vault"></div>
             <div class="machine-vault-shape"></div>
           </div>
           <div class="machine-cap"></div>
-          <div class="machine-base"></div>
+          <div class="machine-base">
+            <div class="base-label">tBTC Vault</div>
+          </div>
         </article>
 
         <!-- Burn Engine -->
@@ -648,17 +651,16 @@
 
           <div class="machine-tank">
             <div class="machine-tank-inner"></div>
-            <div class="machine-liquid"></div>
-
-            <!-- fuoco rosso -->
+            <!-- solo fiamma, niente liquido blu -->
             <div class="burn-fire"></div>
-            <!-- frammenti che cadono -->
             <div class="burn-frag"></div>
             <div class="burn-frag"></div>
             <div class="burn-frag"></div>
           </div>
           <div class="machine-cap"></div>
-          <div class="machine-base"></div>
+          <div class="machine-base">
+            <div class="base-label">Burn Engine</div>
+          </div>
         </article>
       </section>
 
