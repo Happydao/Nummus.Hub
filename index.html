@@ -1,467 +1,581 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=1440" />
-<title>Nummus Hub – HTML Tanks</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1440" />
+  <title>Nummus Hub</title>
 
-<style>
-  :root {
-    --bg: #050816;
-    --tank-outline: #6f7ea0;
-    --tank-glass: #1a9cd8;
-    --tank-glass-light: #6ad6ff;
-    --tank-glass-green: #6ad88c;
-    --metal-dark: #262c3f;
-    --metal-mid: #4b5371;
-    --metal-light: #a6b4d8;
-    --accent-orange: #ffb347;
-    --accent-fire: #ff6b6b;
-  }
+  <style>
+    :root {
+      --bg-main: #050816;
+      --bg-panel: #0b1022;
+      --accent-blue: #29abe2;
+      --accent-green: #4ade80;
+      --accent-orange: #ffb347;
+      --accent-burn: #ff6b6b;
+      --metal-dark: #222738;
+      --metal-mid: #434a63;
+      --metal-light: #aab3d8;
+      --glass-edge: rgba(255, 255, 255, 0.28);
+      --glass-highlight: rgba(255, 255, 255, 0.6);
+      --text-soft: #c8d2ff;
+    }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    background: radial-gradient(circle at top, #202747 0, #050816 55%, #02030a 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
-    color: #f8f9ff;
-    overflow: auto;
-  }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #202a4f 0, #050816 55%, #02030a 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      color: #f9f9ff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px 16px;
+    }
 
-  /* Contenitore scena */
-  .hub-scene {
-    position: relative;
-    width: 1200px;
-    max-width: 95vw;
-    height: 520px;
-    max-height: 75vh;
-    margin: 24px auto;
-    border-radius: 20px;
-    background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 60%);
-    box-shadow:
-      0 30px 80px rgba(0,0,0,0.8),
-      0 0 60px rgba(0,0,0,0.8);
-    overflow: visible;
-  }
+    .hub-root {
+      width: 1200px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
 
-  /* Griglia delle 3 macchine */
-  .machines {
-    position: absolute;
-    inset: 0;
-    padding: 60px 80px 40px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: end;
-    gap: 40px;
-    pointer-events: none; /* per ora niente click */
-  }
+    /* Header ====================================== */
 
-  /* Macchina base */
-  .machine {
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-  }
+    .hub-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
 
-  .machine-label {
-    position: absolute;
-    top: 10px;
-    text-align: center;
-    font-size: 0.8rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: #c6cff5;
-    opacity: 0.9;
-  }
+    .hub-title {
+      font-size: 1.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fdfcff;
+      margin-bottom: 6px;
+    }
 
-  .machine-label span {
-    display: block;
-    font-size: 0.65rem;
-    opacity: 0.8;
-  }
+    .hub-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      opacity: 0.9;
+    }
 
-  /* Base della macchina */
-  .base {
-    position: relative;
-    width: 180px;
-    height: 40px;
-    background: linear-gradient(180deg, var(--metal-mid), #171b28);
-    border-radius: 16px;
-    box-shadow:
-      0 12px 24px rgba(0,0,0,0.7),
-      inset 0 2px 2px rgba(255,255,255,0.12),
-      inset 0 -2px 4px rgba(0,0,0,0.6);
-  }
+    /* Pannello centrale (sfondo delle macchine) === */
 
-  .base::before {
-    content: "";
-    position: absolute;
-    inset: 4px 12px;
-    border-radius: 12px;
-    background: linear-gradient(180deg, #262f45, #141826);
-  }
+    .hub-panel {
+      position: relative;
+      margin-top: 24px;
+      padding: 36px 42px 30px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 20% 0, rgba(58, 119, 255, 0.25), transparent 55%),
+        radial-gradient(circle at 80% 0, rgba(255, 140, 80, 0.22), transparent 55%),
+        linear-gradient(145deg, #050818, #050818 25%, #060b18 60%, #040516);
+      box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.02);
+      overflow: visible;
+    }
 
-  /* Colonna cilindrica (tanica) */
-  .tank {
-    position: absolute;
-    left: 50%;
-    bottom: 40px;
-    transform: translateX(-50%);
-    width: 140px;
-    height: 230px;
-    border-radius: 70px;
-    background: linear-gradient(180deg, rgba(13,37,63,0.8), rgba(7,12,26,0.9));
-    box-shadow:
-      0 0 0 2px rgba(255,255,255,0.08),
-      inset 0 0 0 2px rgba(0,0,0,0.55);
-    overflow: hidden;
-  }
+    /* Griglia macchine ============================ */
 
-  .tank-glass {
-    position: absolute;
-    inset: 12px;
-    border-radius: 60px;
-    background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.3), transparent 50%),
-                linear-gradient(180deg, rgba(90,240,255,0.1), rgba(0,130,255,0.1));
-    box-shadow:
-      inset 0 0 0 2px rgba(255,255,255,0.08),
-      inset 0 0 30px rgba(0,200,255,0.2);
-  }
+    .machines-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 40px;
+      align-items: flex-end;
+      position: relative;
+      padding-top: 36px;
+    }
 
-  .tank-liquid {
-    position: absolute;
-    left: 6%;
-    bottom: 8%;
-    width: 88%;
-    height: 30%;
-    border-radius: 40px;
-    background: radial-gradient(circle at 50% 0, rgba(255,255,255,0.4), transparent 50%),
-                linear-gradient(180deg, rgba(0,180,220,0.85), rgba(0,95,155,0.95));
-    box-shadow:
-      0 -4px 12px rgba(255,255,255,0.25),
-      0 10px 20px rgba(0,0,0,0.8);
-  }
+    /* Tubazioni tra le macchine =================== */
 
-  .tank-glass--green {
-    box-shadow:
-      inset 0 0 0 2px rgba(205,255,220,0.15),
-      inset 0 0 30px rgba(120,255,160,0.2);
-  }
+    .pipe-horizontal {
+      position: absolute;
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #cfd4f0, #a8b0d8);
+      box-shadow:
+        inset 0 0 4px rgba(255, 255, 255, 0.45),
+        0 8px 16px rgba(0, 0, 0, 0.65);
+    }
 
-  .tank-liquid--green {
-    background: radial-gradient(circle at 50% 0, rgba(255,255,255,0.4), transparent 50%),
-                linear-gradient(180deg, rgba(140,255,200,0.8), rgba(0,180,110,0.95));
-  }
+    .pipe-horizontal.pipe-left-center {
+      width: 230px;
+      left: 23%;
+      top: 54%;
+      transform: translateX(-40px);
+    }
 
-  .tank-glass--empty {
-    box-shadow:
-      inset 0 0 0 2px rgba(255,255,255,0.06),
-      inset 0 0 30px rgba(255,190,0,0.2);
-  }
+    .pipe-horizontal.pipe-center-right {
+      width: 230px;
+      right: 23%;
+      top: 54%;
+      transform: translateX(40px);
+    }
 
-  .tank-liquid--none {
-    display: none;
-  }
+    .pipe-node {
+      position: absolute;
+      top: 50%;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #fff9e3, #ffb347 50%, #c77024 80%);
+      box-shadow:
+        0 0 16px rgba(255, 190, 80, 0.8),
+        0 4px 10px rgba(0, 0, 0, 0.7);
+      transform: translate(-50%, -50%);
+    }
 
-  /* Cappello cilindro */
-  .tank-cap {
-    position: absolute;
-    left: 50%;
-    bottom: 40px;
-    transform: translate(-50%, 50%);
-    width: 150px;
-    height: 34px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, var(--metal-light), var(--metal-dark));
-    box-shadow:
-      0 6px 12px rgba(0,0,0,0.7),
-      inset 0 2px 2px rgba(255,255,255,0.35),
-      inset 0 -2px 4px rgba(0,0,0,0.7);
-  }
+    .pipe-left-center .pipe-node { right: 24px; }
+    .pipe-center-right .pipe-node { left: 24px; }
 
-  .tank-cap::before {
-    content: "";
-    position: absolute;
-    inset: 4px 14px;
-    border-radius: 999px;
-    background: linear-gradient(180deg, #5c6684, #232838);
-  }
+    /* Macchina base =============================== */
 
-  /* --- Macchina centrale: vault (base più cubica) --- */
-  .machine-center .base {
-    width: 200px;
-  }
+    .machine {
+      position: relative;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
 
-  .machine-center .tank {
-    width: 150px;
-    border-radius: 24px;
-  }
-  .machine-center .tank-glass {
-    border-radius: 18px;
-    background: linear-gradient(180deg,
-      rgba(255,220,130,0.16),
-      rgba(255,180,0,0.28));
-    box-shadow:
-      inset 0 0 0 2px rgba(255,255,255,0.1),
-      inset 0 0 40px rgba(255,200,0,0.35);
-  }
+    .machine-header {
+      position: absolute;
+      top: -32px;
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      opacity: 0.9;
+    }
 
-  .machine-center .tank-liquid {
-    display: none;
-  }
+    .machine-header span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      opacity: 0.75;
+    }
 
-  .machine-center .tank-cap {
-    width: 170px;
-  }
+    .machine-base {
+      position: relative;
+      width: 200px;
+      height: 48px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, var(--metal-mid), #141722);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.9),
+        inset 0 2px 3px rgba(255, 255, 255, 0.2),
+        inset 0 -4px 6px rgba(0, 0, 0, 0.75);
+    }
 
-  /* --- Fuoco nella macchina destra --- */
-  .machine-right .tank-liquid {
-    height: 26%;
-    background: radial-gradient(circle at 50% 0, rgba(255,255,255,0.5), transparent 50%),
-                linear-gradient(180deg, rgba(0,190,250,0.9), rgba(0,90,150,0.95));
-  }
+    .machine-base::before {
+      content: "";
+      position: absolute;
+      inset: 6px 20px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #252c42, #101321);
+    }
 
-  .fire {
-    position: absolute;
-    left: 50%;
-    top: 35%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 90px;
-    background:
-      radial-gradient(circle at 30% 15%, rgba(255,255,255,0.9), transparent 50%),
-      radial-gradient(circle at 70% 15%, rgba(255,255,255,0.7), transparent 50%),
-      radial-gradient(circle at 50% 70%, rgba(255,90,0,1), transparent 55%);
-    filter: blur(1px);
-    mix-blend-mode: screen;
-    opacity: 0.85;
-    animation: fireDance 2.6s ease-in-out infinite alternate;
-  }
+    /* Vetro cilindrico ============================ */
 
-  @keyframes fireDance {
-    0% {
-      transform: translateX(-50%) scaleY(1);
+    .machine-tank {
+      position: absolute;
+      left: 50%;
+      bottom: 48px;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 230px;
+      border-radius: 80px;
+      background: linear-gradient(180deg, #111829, #060915);
+      box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.08),
+        inset 0 0 0 2px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    .machine-tank-inner {
+      position: absolute;
+      inset: 14px;
+      border-radius: 70px;
+      background:
+        radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.45), transparent 55%),
+        linear-gradient(180deg, rgba(90, 240, 255, 0.08), rgba(0, 130, 255, 0.08));
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+        inset 0 0 34px rgba(0, 204, 255, 0.18);
+    }
+
+    .machine-liquid {
+      position: absolute;
+      left: 8%;
+      bottom: 8%;
+      width: 84%;
+      height: 32%;
+      border-radius: 999px;
+      background: radial-gradient(circle at 50% 0, var(--glass-highlight), transparent 55%),
+        linear-gradient(180deg, rgba(0, 190, 255, 0.94), rgba(0, 95, 155, 0.98));
+      box-shadow:
+        0 -4px 12px rgba(255, 255, 255, 0.35),
+        0 12px 24px rgba(0, 0, 0, 0.85);
+    }
+
+    .machine-liquid--green {
+      background: radial-gradient(circle at 50% 0, var(--glass-highlight), transparent 55%),
+        linear-gradient(180deg, rgba(138, 255, 200, 0.9), rgba(0, 170, 105, 0.98));
+      box-shadow:
+        0 -3px 10px rgba(255, 255, 255, 0.3),
+        0 12px 24px rgba(0, 0, 0, 0.9);
+    }
+
+    .machine-tank-inner--vault {
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 25% 0, rgba(255, 255, 255, 0.5), transparent 55%),
+        linear-gradient(180deg, rgba(255, 220, 140, 0.18), rgba(255, 190, 0, 0.28));
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+        inset 0 0 40px rgba(255, 195, 0, 0.35);
+    }
+
+    .machine-vault-shape {
+      position: absolute;
+      inset: 24px;
+      border-radius: 24px;
+      border: 1px dashed rgba(255, 240, 190, 0.5);
       opacity: 0.7;
     }
-    100% {
-      transform: translateX(-52%) scaleY(1.08);
-      opacity: 1;
+
+    /* Cappello ==================================== */
+
+    .machine-cap {
+      position: absolute;
+      left: 50%;
+      bottom: 48px;
+      transform: translate(-50%, 55%);
+      width: 170px;
+      height: 36px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--metal-light), var(--metal-dark));
+      box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.8),
+        inset 0 2px 3px rgba(255, 255, 255, 0.35),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.8);
     }
-  }
 
-  /* --- Tubazioni --- */
+    .machine-cap::before {
+      content: "";
+      position: absolute;
+      inset: 4px 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #5d6683, #262b3a);
+    }
 
-  .pipe {
-    position: absolute;
-    background: linear-gradient(90deg, #9fb3d7, #7480a2);
-    box-shadow:
-      inset 0 0 4px rgba(255,255,255,0.28),
-      0 6px 12px rgba(0,0,0,0.7);
-  }
+    /* SWAP: monete N che entrano ================== */
 
-  /* tubo orizzontale centrale (vault <-> destra) */
-  .pipe-center-right {
-    height: 26px;
-    width: 170px;
-    border-radius: 20px;
-    left: 50%;
-    top: 55%;
-    transform: translateX(70px);
-  }
+    .swap-stream {
+      position: absolute;
+      left: 8%;
+      top: -26px;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px 999px 20px 120px;
+      background: linear-gradient(120deg, rgba(160, 220, 255, 0.3), transparent 70%);
+      box-shadow:
+        0 0 18px rgba(120, 220, 255, 0.4);
+      overflow: visible;
+    }
 
-  /* tubo orizzontale sinistra -> vault */
-  .pipe-left-center {
-    height: 26px;
-    width: 170px;
-    border-radius: 20px;
-    left: 50%;
-    top: 48%;
-    transform: translateX(-240px);
-  }
+    .swap-coin {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #d2e7ff 45%, #8cb8ff 85%);
+      box-shadow:
+        0 0 10px rgba(150, 210, 255, 0.8),
+        0 4px 12px rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #1b2852;
+      font-weight: 700;
+      animation: swapFlow 3.2s ease-in-out infinite;
+    }
 
-  /* flusso BTC nel tubo centrale */
-  .coin-bubble {
-    position: absolute;
-    top: 3px;
-    width: 26px;
-    height: 20px;
-    border-radius: 999px;
-    background: radial-gradient(circle at 30% 30%, #fff8c0, #ffb347 60%, #c77228 100%);
-    box-shadow:
-      0 0 10px rgba(255,170,0,0.8),
-      0 2px 4px rgba(0,0,0,0.6);
-    animation: coinMove 3.6s linear infinite;
-  }
+    .swap-coin:nth-child(1) { left: 6px; top: 8px; animation-delay: 0s; }
+    .swap-coin:nth-child(2) { left: 38px; top: -10px; animation-delay: 0.4s; }
+    .swap-coin:nth-child(3) { left: 72px; top: -22px; animation-delay: 0.8s; }
 
-  .pipe-left-center .coin-bubble {
-    left: 18px;
-  }
+    @keyframes swapFlow {
+      0% { transform: translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      60% { transform: translate(40px, 40px); opacity: 1; }
+      100% { transform: translate(60px, 70px); opacity: 0; }
+    }
 
-  .pipe-center-right .coin-bubble {
-    right: 18px;
-    animation-delay: 1.2s;
-  }
+    .btc-badge {
+      position: absolute;
+      left: -24px;
+      top: 42%;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 25%, #ffffff, #ffe3a0 48%, #ffb347 72%, #c26d25 90%);
+      box-shadow:
+        0 0 18px rgba(255, 200, 80, 0.9),
+        0 8px 16px rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #1a130a;
+      font-weight: 700;
+    }
 
-  @keyframes coinMove {
-    0% { transform: translateX(0); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateX(120px); opacity: 0; }
-  }
+    /* VAULT: badge tBTC Treasury in alto ========= */
 
-  /* Tubo verticale sopra la destra per far cadere le monete bruciate */
-  .vertical-feed {
-    position: absolute;
-    width: 28px;
-    height: 120px;
-    border-radius: 18px;
-    background: linear-gradient(180deg, #7f8bb0, #515b7a);
-    box-shadow:
-      inset 0 0 4px rgba(255,255,255,0.25),
-      0 8px 14px rgba(0,0,0,0.8);
-    right: 150px;
-    top: 25px;
-  }
+    .vault-badge {
+      position: absolute;
+      top: -52px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 15%, #ffffff, #8dd6ff 45%, #3070ff 75%, #101322 90%);
+      box-shadow:
+        0 0 30px rgba(80, 210, 255, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e9f7ff;
+    }
 
-  .vertical-feed::before {
-    content: "";
-    position: absolute;
-    inset: 4px;
-    border-radius: 14px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,190,170,0.35));
-  }
+    .vault-badge span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 2px;
+    }
 
-  .falling-coin {
-    position: absolute;
-    left: 50%;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    background: radial-gradient(circle at 30% 30%, #ffffff, #ffd48c 50%, #ff8c3a 80%);
-    box-shadow:
-      0 0 10px rgba(255,180,0,0.8),
-      0 3px 6px rgba(0,0,0,0.6);
-    animation: fallCoin 2.1s linear infinite;
-  }
+    /* BURN: fiamma & frammenti ==================== */
 
-  @keyframes fallCoin {
-    0% { top: 8px; opacity: 0; }
-    10% { opacity: 1; }
-    70% { opacity: 1; }
-    100% { top: 88px; opacity: 0; transform: translateX(-50%) scale(0.8); }
-  }
+    .burn-fire {
+      position: absolute;
+      left: 50%;
+      bottom: 25%;
+      transform: translateX(-50%);
+      width: 72px;
+      height: 96px;
+      background:
+        radial-gradient(circle at 30% 15%, rgba(255, 255, 255, 0.95), transparent 50%),
+        radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.85), transparent 55%),
+        radial-gradient(circle at 50% 80%, #ff6b3b, transparent 60%);
+      mix-blend-mode: screen;
+      filter: blur(1px);
+      opacity: 0.9;
+      animation: burnPulse 2.3s ease-in-out infinite alternate;
+    }
 
-  /* Piccolo badge sopra il tubo centrale (logo DAO semplificato) */
-  .dao-badge {
-    position: absolute;
-    top: 38px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 20%, #ffffff, #5b7af0 40%, #141829 70%);
-    box-shadow:
-      0 0 18px rgba(0,255,200,0.6),
-      0 6px 16px rgba(0,0,0,0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #e3f7ff;
-  }
-</style>
+    @keyframes burnPulse {
+      0% { transform: translateX(-50%) scaleY(1); opacity: 0.75; }
+      100% { transform: translateX(-50%) scaleY(1.08); opacity: 1; }
+    }
+
+    .burn-frag {
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      border-radius: 3px;
+      background: linear-gradient(145deg, #f2f2f2, #9ea3b8);
+      box-shadow:
+        0 0 6px rgba(255, 255, 255, 0.9),
+        0 3px 6px rgba(0, 0, 0, 0.9);
+      animation: fragFall 2.4s linear infinite;
+    }
+
+    .burn-frag:nth-child(1) { left: 52%; top: 8%; animation-delay: 0s; }
+    .burn-frag:nth-child(2) { left: 60%; top: 0%; animation-delay: 0.5s; }
+    .burn-frag:nth-child(3) { left: 44%; top: -4%; animation-delay: 0.9s; }
+
+    @keyframes fragFall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      80%  { transform: translateY(48px) rotate(18deg); opacity: 1; }
+      100% { transform: translateY(64px) rotate(26deg); opacity: 0; }
+    }
+
+    /* Barra verticale di “supply” a destra ======= */
+
+    .supply-bar {
+      position: absolute;
+      right: 42px;
+      top: 64px;
+      width: 26px;
+      height: 170px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #f2f4ff, #cbd5f5);
+      box-shadow:
+        0 0 14px rgba(255, 255, 255, 0.6),
+        0 20px 30px rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 6px 0;
+    }
+
+    .supply-fill {
+      width: 56%;
+      height: 30%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ffb347, #ff6b3b);
+      box-shadow:
+        0 0 10px rgba(255, 120, 60, 0.9);
+      animation: supplyBlink 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes supplyBlink {
+      0% { opacity: 0.65; transform: translateY(0); }
+      100% { opacity: 1; transform: translateY(-4px); }
+    }
+
+    /* Testo descrittivo sotto le macchine ========= */
+
+    .machine-desc {
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: rgba(203, 213, 255, 0.92);
+      text-align: center;
+      max-width: 260px;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="hub-scene">
+  <div class="hub-root">
+    <header class="hub-header">
+      <div class="hub-title">Nummus Aeternitas: The Meme Coin with a Bitcoin Engine</div>
+      <div class="hub-subtitle">
+        Swap → Vault → Burn: il flusso di valore tra wallet tBTC, tesoreria e riduzione della supply.
+      </div>
+    </header>
 
-    <!-- badge della DAO sopra al tubo centrale -->
-    <div class="dao-badge">DAO</div>
-
-    <!-- tubo verticale feed a destra -->
-    <div class="vertical-feed">
-      <div class="falling-coin"></div>
-    </div>
-
-    <!-- tubi orizzontali -->
-    <div class="pipe pipe-left-center">
-      <div class="coin-bubble"></div>
-    </div>
-    <div class="pipe pipe-center-right">
-      <div class="coin-bubble"></div>
-    </div>
-
-    <!-- 3 macchine -->
-    <div class="machines">
-
-      <!-- Macchina sinistra: Swap / Accumulation -->
-      <div class="machine machine-left">
-        <div class="machine-label">
-          SWAP ENGINE
-          <span>Wallet tBTC</span>
-        </div>
-
-        <div class="tank-cap"></div>
-
-        <div class="tank">
-          <div class="tank-glass tank-glass--green"></div>
-          <div class="tank-liquid tank-liquid--green"></div>
-        </div>
-
-        <div class="base"></div>
+    <main class="hub-panel">
+      <!-- Barra supply verticale a destra -->
+      <div class="supply-bar">
+        <div class="supply-fill"></div>
       </div>
 
-      <!-- Macchina centrale: Vault -->
-      <div class="machine machine-center">
-        <div class="machine-label">
-          VAULT
-          <span>tBTC Treasury</span>
-        </div>
-
-        <div class="tank-cap"></div>
-
-        <div class="tank">
-          <div class="tank-glass"></div>
-          <div class="tank-liquid tank-liquid--none"></div>
-        </div>
-
-        <div class="base"></div>
+      <!-- Tubi orizzontali -->
+      <div class="pipe-horizontal pipe-left-center">
+        <div class="pipe-node"></div>
+      </div>
+      <div class="pipe-horizontal pipe-center-right">
+        <div class="pipe-node"></div>
       </div>
 
-      <!-- Macchina destra: Burn -->
-      <div class="machine machine-right">
-        <div class="machine-label">
-          BURN ENGINE
-          <span>Supply Reduction</span>
-        </div>
+      <!-- Macchine -->
+      <section class="machines-grid">
+        <!-- LEFT: Swap Engine -->
+        <article class="machine machine-left">
+          <div class="machine-header">
+            Swap Engine
+            <span>Building the BTC Reserve</span>
+          </div>
 
-        <div class="tank-cap"></div>
+          <!-- stream di monete N -->
+          <div class="swap-stream">
+            <div class="swap-coin">N</div>
+            <div class="swap-coin">N</div>
+            <div class="swap-coin">N</div>
+          </div>
 
-        <div class="tank">
-          <div class="tank-glass"></div>
-          <div class="tank-liquid"></div>
-          <div class="fire"></div>
-        </div>
+          <!-- badge BTC -->
+          <div class="btc-badge">₿</div>
 
-        <div class="base"></div>
-      </div>
-    </div>
+          <div class="machine-tank">
+            <div class="machine-tank-inner machine-tank-inner--swap"></div>
+            <div class="machine-liquid machine-liquid--green"></div>
+          </div>
+
+          <div class="machine-cap"></div>
+          <div class="machine-base"></div>
+
+          <p class="machine-desc">
+            Gli swap di Nummus in tBTC alimentano la riserva Bitcoin, che confluisce nel
+            wallet di accumulo.
+          </p>
+        </article>
+
+        <!-- CENTER: Vault -->
+        <article class="machine machine-center">
+          <div class="machine-header">
+            tBTC Vault
+            <span>Decentralized Treasury</span>
+          </div>
+
+          <div class="vault-badge">
+            VB
+            <span>tBTC VAULT</span>
+          </div>
+
+          <div class="machine-tank">
+            <div class="machine-tank-inner machine-tank-inner--vault"></div>
+            <div class="machine-vault-shape"></div>
+          </div>
+
+          <div class="machine-cap"></div>
+          <div class="machine-base"></div>
+
+          <p class="machine-desc">
+            Il tBTC accumulato diventa la tesoreria verificabile on-chain di Nummus, custodiata nel vault.
+          </p>
+        </article>
+
+        <!-- RIGHT: Burn Engine -->
+        <article class="machine machine-right">
+          <div class="machine-header">
+            Burn Engine
+            <span>Supply Reduction</span>
+          </div>
+
+          <div class="machine-tank">
+            <div class="machine-tank-inner"></div>
+            <div class="machine-liquid"></div>
+
+            <!-- fiamma -->
+            <div class="burn-fire"></div>
+            <!-- frammenti che cadono -->
+            <div class="burn-frag"></div>
+            <div class="burn-frag"></div>
+            <div class="burn-frag"></div>
+          </div>
+
+          <div class="machine-cap"></div>
+          <div class="machine-base"></div>
+
+          <p class="machine-desc">
+            La Torrino DAO riacquista Nummus dal mercato e li invia al burn, riducendo in modo permanente la supply.
+          </p>
+        </article>
+      </section>
+    </main>
   </div>
 </body>
 </html>
