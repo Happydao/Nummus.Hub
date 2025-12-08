@@ -3,79 +3,133 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Crypto Processor</title>
+  <title>Crypto Machine</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #000;
+      background: #0c0c0c;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .machine {
+      display: flex;
+      align-items: flex-end;
+      gap: 40px;
+      position: relative;
+    }
+
+    .container {
+      width: 120px;
+      height: 250px;
+      background: #1e1e1e;
+      border: 3px solid #555;
+      border-radius: 15px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(255,140,0,0.4);
+    }
+
+    .liquid {
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(to top, #00ffff, #005577);
+      border-top: 3px solid #444;
+    }
+
+    .pipe {
+      width: 80px;
+      height: 30px;
+      background: #999;
+      border-radius: 15px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .pipe.left {
+      left: -90px;
+    }
+
+    .pipe.right {
+      right: -90px;
+    }
+
+    .pipe::before {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 30px;
+      background: #ff9900;
+      border-radius: 50%;
+      animation: coinFlow 2s linear infinite;
+    }
+
+    @keyframes coinFlow {
+      0% { left: 0; opacity: 0; }
+      50% { left: 30px; opacity: 1; }
+      100% { left: 60px; opacity: 0; }
+    }
+
+    .icon {
+      position: absolute;
+      top: -30px;
+      width: 40px;
+      height: 40px;
+      background: #ffc107;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #000;
+      box-shadow: 0 0 10px rgba(255, 255, 0, 0.6);
+    }
+
+    .center-core {
+      width: 120px;
+      height: 180px;
+      background: #ffaa00;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px #fff, 0 0 25px #ffcc00;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      background-color: #111;
-    }
-
-    .background {
-      position: relative;
-      width: 90vw;
-      max-width: 1200px;
-    }
-
-    .background img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .container-data {
-      position: absolute;
-      color: #fff;
+      color: #222;
       font-weight: bold;
-      font-size: 16px;
-      text-align: center;
-      padding: 10px;
-      background-color: rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
     }
 
-    /* Posizioni approssimate dei contenitori (puoi regolarli con precisione) */
-    .container1 {
-      top: 20%;
-      left: 8%;
-      width: 120px;
-    }
-
-    .container2 {
-      top: 25%;
-      left: 42%;
-      width: 120px;
-    }
-
-    .container3 {
-      top: 22%;
-      right: 5%;
-      width: 120px;
-    }
   </style>
 </head>
 <body>
-  <div class="background">
-    <img src="your-image.png" alt="Crypto Machine"/>
-
-    <div class="container-data container1">
-      <!-- Dati contenitore 1 -->
-      <p>Input Coin</p>
+  <div class="machine">
+    <!-- Contenitore sinistra -->
+    <div class="container">
+      <div class="icon">N</div>
+      <div class="liquid"></div>
+      <div class="pipe right"></div>
     </div>
 
-    <div class="container-data container2">
-      <!-- Dati contenitore 2 -->
-      <p>Bitcoin Output</p>
+    <!-- Nucleo centrale -->
+    <div class="center-core">
+      BTC
     </div>
 
-    <div class="container-data container3">
-      <!-- Dati contenitore 3 -->
-      <p>Market Analysis</p>
+    <!-- Contenitore destra -->
+    <div class="container">
+      <div class="icon">🔥</div>
+      <div class="liquid" style="background: linear-gradient(to top, #ff4444, #770000);"></div>
+      <div class="pipe left"></div>
     </div>
   </div>
 </body>
