@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=1440" /> <!-- forza versione desktop -->
+<meta name="viewport" content="width=1440" />
 <title>Nummus Hub</title>
 
 <style>
@@ -15,23 +15,23 @@
 
   body {
     background: #000000;
-    overflow: hidden;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
+    overflow: auto; /* posso scorrere se serve */
   }
 
-  /* ----- Sfondo nero con bagliore neon leggerissimo ----- */
+  /* sfondo nero con alone neon leggero */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     background: radial-gradient(circle at center,
-                                rgba(255, 115, 0, 0.09),
+                                rgba(255, 140, 0, 0.14),
                                 rgba(0, 0, 0, 1) 70%);
     animation: neonPulse 6s ease-in-out infinite alternate;
     z-index: -1;
@@ -42,25 +42,28 @@
       filter: blur(40px) brightness(1);
     }
     100% {
-      filter: blur(80px) brightness(1.25);
+      filter: blur(80px) brightness(1.2);
     }
   }
 
-  /* ----- Contenitore della tua immagine ----- */
   .hub-wrapper {
     position: relative;
     width: 100%;
-    height: 100%;
+    max-width: 1400px;
+    margin: 40px auto; /* distacco dall’alto/basso */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px 40px; /* bordi neri laterali */
   }
 
   .hub-image {
-    width: 75vw;
-    max-width: 1400px;
+    width: 60vw;        /* prima era 75vw: ora è più piccola */
+    max-width: 1100px;  /* massimo su monitor grandi */
+    max-height: 70vh;   /* lascio spazio nero sopra/sotto */
     height: auto;
-    opacity: 0.92; /* leggero fade, più cyber */
+    opacity: 0.93;
+    display: block;
   }
 </style>
 </head>
