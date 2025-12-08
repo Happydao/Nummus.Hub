@@ -86,15 +86,15 @@
     .machines-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 70px;
+      gap: 80px;
       align-items: flex-end;
       position: relative;
-      padding: 20px 10px 0;
+      padding: 30px 10px 0;
     }
 
     .machine {
       position: relative;
-      height: 290px;
+      height: 340px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -121,12 +121,12 @@
 
     .machine-base {
       position: relative;
-      width: 210px;
-      height: 52px;
-      border-radius: 18px;
+      width: 230px;
+      height: 60px;
+      border-radius: 20px;
       background: linear-gradient(180deg, var(--metal-mid), #141722);
       box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.9),
+        0 24px 48px rgba(0, 0, 0, 0.9),
         inset 0 2px 3px rgba(255, 255, 255, 0.2),
         inset 0 -4px 6px rgba(0, 0, 0, 0.75);
       display: flex;
@@ -137,8 +137,8 @@
     .machine-base::before {
       content: "";
       position: absolute;
-      inset: 6px 22px;
-      border-radius: 14px;
+      inset: 6px 26px;
+      border-radius: 16px;
       background: linear-gradient(180deg, #252c42, #101321);
     }
 
@@ -155,22 +155,23 @@
     .machine-tank {
       position: absolute;
       left: 50%;
-      bottom: 52px;
+      bottom: 60px;
       transform: translateX(-50%);
-      width: 150px;
-      height: 220px;
-      border-radius: 80px;
+      width: 180px;
+      height: 260px;
+      border-radius: 90px;
       background: linear-gradient(180deg, #111829, #060915);
       box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.08),
+        0 0 0 2px rgba(0, 0, 0, 0.85),
+        0 0 0 3px rgba(255, 255, 255, 0.08),
         inset 0 0 0 2px rgba(0, 0, 0, 0.8);
       overflow: hidden;
     }
 
     .machine-tank-inner {
       position: absolute;
-      inset: 14px;
-      border-radius: 70px;
+      inset: 16px;
+      border-radius: 80px;
       background:
         radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.45), transparent 55%),
         linear-gradient(180deg, rgba(90, 240, 255, 0.08), rgba(0, 130, 255, 0.08));
@@ -182,7 +183,7 @@
     .machine-liquid {
       position: absolute;
       left: 8%;
-      bottom: 8%;
+      bottom: 10%;
       width: 84%;
       height: 32%;
       border-radius: 999px;
@@ -200,26 +201,27 @@
 
     /* sinistra: cupola un po' più aperta */
     .machine-left .machine-tank {
-      border-radius: 80px 80px 40px 40px;
+      border-radius: 90px 90px 44px 44px;
     }
     .machine-left .machine-tank-inner {
-      border-radius: 72px 72px 34px 34px;
+      border-radius: 82px 82px 38px 38px;
     }
 
     /* centro: completamente giallo + glow + badge BTC -------- */
 
     .machine-center .machine-tank {
-      border-radius: 80px;
+      border-radius: 90px;
       background: radial-gradient(circle at 30% 0, #fff7d0, #ffd76f 55%, #b87b1e 100%);
       box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.18),
-        0 0 34px rgba(255, 210, 90, 0.8);
+        0 0 0 3px rgba(0, 0, 0, 0.9),
+        0 0 0 4px rgba(255, 255, 255, 0.15),
+        0 0 36px rgba(255, 210, 90, 0.8);
       animation: vaultGlow 2.4s ease-in-out infinite alternate;
     }
 
     .machine-center .machine-tank-inner {
-      inset: 16px;
-      border-radius: 64px;
+      inset: 18px;
+      border-radius: 74px;
       background:
         radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.85), transparent 55%),
         linear-gradient(180deg, rgba(255, 235, 170, 0.86), rgba(255, 185, 35, 0.95));
@@ -230,30 +232,32 @@
 
     @keyframes vaultGlow {
       0% { box-shadow:
-            0 0 0 2px rgba(255, 255, 255, 0.18),
-            0 0 18px rgba(255, 210, 90, 0.65); }
+            0 0 0 3px rgba(0, 0, 0, 0.9),
+            0 0 0 4px rgba(255, 255, 255, 0.15),
+            0 0 20px rgba(255, 210, 90, 0.65); }
       100% { box-shadow:
-            0 0 0 2px rgba(255, 255, 255, 0.26),
-            0 0 44px rgba(255, 230, 140, 1); }
+            0 0 0 3px rgba(0, 0, 0, 0.9),
+            0 0 0 4px rgba(255, 255, 255, 0.25),
+            0 0 46px rgba(255, 230, 140, 1); }
     }
 
     .vault-btc-badge {
       position: absolute;
       left: 50%;
-      bottom: 78px;
+      bottom: 92px;
       transform: translateX(-50%);
-      width: 40px;
-      height: 40px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       background:
         radial-gradient(circle at 30% 25%, #ffffff, #ffe3a0 48%, #ffb347 72%, #c26d25 90%);
       box-shadow:
-        0 0 15px rgba(255, 205, 110, 0.9),
-        0 6px 14px rgba(0, 0, 0, 0.85);
+        0 0 18px rgba(255, 205, 110, 0.9),
+        0 8px 16px rgba(0, 0, 0, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #1a130a;
       font-weight: 700;
     }
@@ -266,14 +270,14 @@
     .machine-cap {
       position: absolute;
       left: 50%;
-      bottom: 52px;
-      transform: translate(-50%, 55%);
-      width: 170px;
-      height: 36px;
+      bottom: 60px;
+      transform: translate(-50%, 60%);
+      width: 190px;
+      height: 40px;
       border-radius: 999px;
-      background: linear-gradient(180deg, var(--metal-light), var(--metal-dark));
+      background: linear-gradient(180deg, var(--metal-light), #171a25);
       box-shadow:
-        0 10px 22px rgba(0, 0, 0, 0.8),
+        0 14px 26px rgba(0, 0, 0, 0.8),
         inset 0 2px 3px rgba(255, 255, 255, 0.35),
         inset 0 -3px 6px rgba(0, 0, 0, 0.8);
     }
@@ -290,38 +294,48 @@
 
     .pipe-horizontal {
       position: absolute;
-      height: 22px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #cfd4f0, #a8b0d8);
+      height: 26px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #f5f7ff, #cbd3f0);
       box-shadow:
-        inset 0 0 4px rgba(255, 255, 255, 0.45),
-        0 8px 16px rgba(0, 0, 0, 0.65);
+        0 0 0 2px rgba(0, 0, 0, 0.85),
+        inset 0 0 6px rgba(255, 255, 255, 0.6),
+        0 10px 20px rgba(0, 0, 0, 0.75);
+    }
+
+    .pipe-horizontal::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #d5dbf6, #b5bee8);
+      opacity: 0.9;
     }
 
     /* sinistra -> centro, uniti senza spazi */
     .pipe-horizontal.pipe-left-center {
-      width: 360px;
+      width: 420px;
       left: 50%;
-      top: 53%;
-      transform: translateX(-275px); /* parte dal bordo sinistro del vault */
+      top: 56%;
+      transform: translateX(-320px);
       overflow: hidden;
     }
 
     /* centro -> destra, uniti senza spazi */
     .pipe-horizontal.pipe-center-right {
-      width: 360px;
+      width: 420px;
       left: 50%;
-      top: 53%;
-      transform: translateX(-5px);
-      opacity: 0.9;
+      top: 56%;
+      transform: translateX(-20px);
+      opacity: 0.92;
     }
 
     /* due monete BTC che scorrono nel tubo sinistra->centro */
     .btc-flow {
       position: absolute;
-      top: 2px;
-      width: 28px;
-      height: 18px;
+      top: 4px;
+      width: 30px;
+      height: 20px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, #ffffff, #ffe7b0 50%, #ffb347 80%);
       box-shadow:
@@ -341,17 +355,17 @@
     @keyframes btcMove {
       0%   { transform: translateX(-40px); opacity: 0; }
       10%  { opacity: 1; }
-      90%  { transform: translateX(330px); opacity: 1; }
-      100% { transform: translateX(350px); opacity: 0; }
+      90%  { transform: translateX(370px); opacity: 1; }
+      100% { transform: translateX(390px); opacity: 0; }
     }
 
     /* badge BTC accanto al tank sinistro */
     .btc-badge {
       position: absolute;
-      left: -24px;
-      top: 43%;
-      width: 52px;
-      height: 52px;
+      left: -32px;
+      top: 45%;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background:
         radial-gradient(circle at 30% 25%, #ffffff, #ffe3a0 48%, #ffb347 72%, #c26d25 90%);
@@ -370,11 +384,11 @@
 
     .swap-stream {
       position: absolute;
-      left: 6%;
-      top: -28px;
-      width: 130px;
-      height: 115px;
-      border-radius: 999px 999px 20px 120px;
+      left: 4%;
+      top: -32px;
+      width: 140px;
+      height: 125px;
+      border-radius: 999px 999px 26px 130px;
       background: linear-gradient(120deg, rgba(160, 220, 255, 0.3), transparent 70%);
       box-shadow:
         0 0 18px rgba(120, 220, 255, 0.35);
@@ -383,8 +397,8 @@
 
     .swap-coin {
       position: absolute;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #ffffff, #d2e7ff 45%, #8cb8ff 85%);
       box-shadow:
@@ -400,14 +414,14 @@
     }
 
     .swap-coin:nth-child(1) { left: 6px; top: 8px; animation-delay: 0s; }
-    .swap-coin:nth-child(2) { left: 42px; top: -10px; animation-delay: 0.4s; }
-    .swap-coin:nth-child(3) { left: 80px; top: -24px; animation-delay: 0.8s; }
+    .swap-coin:nth-child(2) { left: 46px; top: -10px; animation-delay: 0.4s; }
+    .swap-coin:nth-child(3) { left: 88px; top: -26px; animation-delay: 0.8s; }
 
     @keyframes swapFlow {
       0% { transform: translateY(0); opacity: 0; }
       10% { opacity: 1; }
-      60% { transform: translate(40px, 36px); opacity: 1; }
-      100% { transform: translate(60px, 64px); opacity: 0; }
+      60% { transform: translate(44px, 40px); opacity: 1; }
+      100% { transform: translate(64px, 72px); opacity: 0; }
     }
 
     /* BURN: fiamma + monete N che cadono --------------------- */
@@ -415,10 +429,10 @@
     .burn-fire {
       position: absolute;
       left: 50%;
-      bottom: 20%;
+      bottom: 22%;
       transform: translateX(-50%);
-      width: 74px;
-      height: 96px;
+      width: 80px;
+      height: 110px;
       background:
         radial-gradient(circle at 30% 15%, rgba(255, 255, 255, 0.95), transparent 55%),
         radial-gradient(circle at 70% 20%, rgba(255, 200, 200, 0.9), transparent 60%),
@@ -437,8 +451,8 @@
     .burn-coin {
       position: absolute;
       left: 50%;
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       transform: translateX(-50%);
       background: radial-gradient(circle at 30% 30%, #ffffff, #d2e7ff 45%, #8cb8ff 85%);
@@ -454,58 +468,87 @@
       animation: burnDrop 2.1s linear infinite;
     }
     .burn-coin:nth-child(1) { animation-delay: 0s; }
-    .burn-coin:nth-child(2) { animation-delay: 0.9s; }
+    .burn-coin:nth-child(2) { animation-delay: 1.0s; }
 
     @keyframes burnDrop {
-      0%   { top: 10%; opacity: 0; }
+      0%   { top: 6%; opacity: 0; }
       10%  { opacity: 1; }
-      70%  { top: 58%; opacity: 1; }
-      100% { top: 65%; opacity: 0; }
+      70%  { top: 60%; opacity: 1; }
+      100% { top: 68%; opacity: 0; }
     }
 
-    /* Torrino DAO: sfera laterale + tubo con monete N -------- */
+    /* Etichetta "NEW SUPPLY" sul burn ------------------------ */
+
+    .burn-supply-tag {
+      position: absolute;
+      left: 50%;
+      bottom: 105px;
+      transform: translateX(-50%);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(40, 40, 60, 0.9));
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #fefefe;
+      box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.8),
+        0 0 14px rgba(255, 120, 120, 0.5);
+    }
+
+    /* Torrino DAO: badge ridotto + tubo con monete N --------- */
 
     .dao-badge {
       position: absolute;
-      right: 230px;
-      top: 55px;
-      width: 92px;
-      height: 92px;
+      right: 265px;
+      top: 64px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       background:
         radial-gradient(circle at 30% 15%, #ffffff, #8df7ff 45%, #35d1a3 70%, #101322 92%);
       box-shadow:
-        0 0 26px rgba(80, 255, 195, 0.8),
-        0 10px 22px rgba(0, 0, 0, 0.85);
+        0 0 18px rgba(80, 255, 195, 0.8),
+        0 8px 18px rgba(0, 0, 0, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      font-size: 0.6rem;
+      font-size: 0.45rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       color: #e9f7ff;
       text-align: center;
     }
 
     .dao-badge span {
-      font-size: 0.7rem;
+      font-size: 0.55rem;
       font-weight: 600;
-      margin-top: 2px;
+      margin-top: 0px;
     }
 
     .dao-pipe {
       position: absolute;
-      right: 258px;
-      top: 125px;
-      width: 24px;
+      right: 278px;
+      top: 118px;
+      width: 22px;
       height: 130px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, #cfd4f0, #9aa4c8);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #f5f7ff, #cbd3f0);
       box-shadow:
-        inset 0 0 4px rgba(255, 255, 255, 0.5),
+        0 0 0 2px rgba(0, 0, 0, 0.85),
+        inset 0 0 6px rgba(255, 255, 255, 0.7),
         0 10px 18px rgba(0, 0, 0, 0.85);
       overflow: hidden;
+    }
+
+    .dao-pipe::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #dde4ff, #b7c1ee);
     }
 
     .dao-pipe::after {
@@ -514,13 +557,14 @@
       left: 50%;
       bottom: -10px;
       transform: translateX(50%);
-      width: 90px;
+      width: 120px;
       height: 22px;
       border-radius: 0 22px 22px 0;
-      background: linear-gradient(90deg, #cfd4f0, #9aa4c8);
+      background: linear-gradient(180deg, #f5f7ff, #cbd3f0);
       box-shadow:
-        inset 0 0 4px rgba(255, 255, 255, 0.4),
-        0 6px 12px rgba(0, 0, 0, 0.7);
+        0 0 0 2px rgba(0, 0, 0, 0.85),
+        inset 0 0 6px rgba(255, 255, 255, 0.7),
+        0 8px 16px rgba(0, 0, 0, 0.75);
     }
 
     .dao-coin {
@@ -554,7 +598,7 @@
     /* Descrizioni sotto -------------------------------------- */
 
     .machines-descriptions {
-      margin-top: 30px;
+      margin-top: 34px;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 28px;
@@ -564,9 +608,9 @@
     }
 
     .machines-descriptions p {
-      max-width: 280px;
+      max-width: 300px;
       margin: 0 auto;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
   </style>
@@ -660,6 +704,9 @@
             <div class="burn-coin">N</div>
             <div class="burn-fire"></div>
           </div>
+
+          <div class="burn-supply-tag">NEW SUPPLY</div>
+
           <div class="machine-cap"></div>
           <div class="machine-base">
             <div class="base-label">Burn Engine</div>
