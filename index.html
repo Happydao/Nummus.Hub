@@ -384,10 +384,10 @@
 
     .swap-stream {
       position: absolute;
-      left: 4%;
-      top: -32px;
-      width: 140px;
-      height: 125px;
+      left: -10%;           /* più verso sinistra */
+      top: -38px;
+      width: 120px;
+      height: 130px;
       border-radius: 999px 999px 26px 130px;
       background: linear-gradient(120deg, rgba(160, 220, 255, 0.3), transparent 70%);
       box-shadow:
@@ -410,25 +410,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: transparent; /* nasconde la N di testo */
+      color: transparent; /* nasconde eventuale testo */
       font-weight: 700;
     }
 
     .swap-coin {
       width: 32px;
       height: 32px;
-      animation: swapFlow 3.2s ease-in-out infinite;
+      animation: swapFlow 3s ease-in-out infinite;
     }
 
-    .swap-coin:nth-child(1) { left: 6px; top: 8px; animation-delay: 0s; }
-    .swap-coin:nth-child(2) { left: 46px; top: -10px; animation-delay: 0.4s; }
-    .swap-coin:nth-child(3) { left: 88px; top: -26px; animation-delay: 0.8s; }
+    .swap-coin:nth-child(1) { left: 8px;  top: -18px; animation-delay: 0s; }
+    .swap-coin:nth-child(2) { left: 30px; top: -32px; animation-delay: 0.4s; }
+    .swap-coin:nth-child(3) { left: 54px; top: -44px; animation-delay: 0.8s; }
 
     @keyframes swapFlow {
-      0% { transform: translateY(0); opacity: 0; }
-      10% { opacity: 1; }
-      60% { transform: translate(44px, 40px); opacity: 1; }
-      100% { transform: translate(64px, 72px); opacity: 0; }
+      0%   { transform: translateY(0); opacity: 0; }
+      10%  { opacity: 1; }
+      70%  { transform: translate(10px, 70px); opacity: 1; }
+      100% { transform: translate(14px, 90px); opacity: 0; }
     }
 
     /* BURN: fiamma + monete Nummus che cadono ---------------- */
@@ -458,16 +458,18 @@
     .burn-coin {
       width: 28px;
       height: 28px;
+      left: 50%;                   /* sempre al centro */
+      transform: translateX(-50%);
       animation: burnDrop 2.1s linear infinite;
     }
     .burn-coin:nth-child(1) { animation-delay: 0s; }
     .burn-coin:nth-child(2) { animation-delay: 1.0s; }
 
     @keyframes burnDrop {
-      0%   { top: 6%; opacity: 0; left: 50%; transform: translateX(-50%); }
+      0%   { top: 6%; opacity: 0; }
       10%  { opacity: 1; }
-      70%  { top: 60%; opacity: 1; }
-      100% { top: 68%; opacity: 0; }
+      70%  { top: 54%; opacity: 1; }
+      100% { top: 62%; opacity: 0; }
     }
 
     /* Etichetta "NEW SUPPLY" sul burn ------------------------ */
@@ -490,12 +492,12 @@
         0 0 14px rgba(255, 120, 120, 0.5);
     }
 
-    /* Torrino DAO: badge spostato più al centro + tubo -------- */
+    /* Torrino DAO: solo badge laterale ------------------------ */
 
     .dao-badge {
       position: absolute;
-      right: 360px;  /* più verso il centro */
-      top: 64px;
+      right: 260px;  /* spostato ma non copre il testo */
+      top: 80px;
       width: 60px;
       height: 60px;
       border-radius: 50%;
@@ -519,59 +521,6 @@
       font-size: 0.55rem;
       font-weight: 600;
       margin-top: 0px;
-    }
-
-    .dao-pipe {
-      position: absolute;
-      right: 373px; /* allineato al badge spostato */
-      top: 118px;
-      width: 22px;
-      height: 130px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, #f5f7ff, #cbd3f0);
-      box-shadow:
-        0 0 0 2px rgba(0, 0, 0, 0.85),
-        inset 0 0 6px rgba(255, 255, 255, 0.7),
-        0 10px 18px rgba(0, 0, 0, 0.85);
-      overflow: hidden;
-    }
-
-    .dao-pipe::before {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, #dde4ff, #b7c1ee);
-    }
-
-    .dao-pipe::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -10px;
-      transform: translateX(50%);
-      width: 120px;
-      height: 22px;
-      border-radius: 0 22px 22px 0;
-      background: linear-gradient(180deg, #f5f7ff, #cbd3f0);
-      box-shadow:
-        0 0 0 2px rgba(0, 0, 0, 0.85),
-        inset 0 0 6px rgba(255, 255, 255, 0.7),
-        0 8px 16px rgba(0, 0, 0, 0.75);
-    }
-
-    .dao-coin {
-      width: 20px;
-      height: 20px;
-      animation: daoDrop 2.3s linear infinite;
-    }
-    .dao-coin:nth-child(2) { animation-delay: 1.1s; }
-
-    @keyframes daoDrop {
-      0%   { top: -14px; opacity: 0; }
-      10%  { opacity: 1; }
-      80%  { top: 100px; opacity: 1; }
-      100% { top: 118px; opacity: 0; }
     }
 
     /* Descrizioni sotto -------------------------------------- */
@@ -605,14 +554,10 @@
     </header>
 
     <main class="hub-panel">
-      <!-- Torrino DAO: sfera laterale + tubo con monete Nummus -->
+      <!-- Torrino DAO: solo badge laterale -->
       <div class="dao-badge">
         TORRINO
         <span>DAO</span>
-      </div>
-      <div class="dao-pipe">
-        <div class="dao-coin">N</div>
-        <div class="dao-coin">N</div>
       </div>
 
       <!-- tubo sinistra -> centro con due BTC -->
