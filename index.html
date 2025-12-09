@@ -207,6 +207,24 @@
       border-radius: 82px 82px 38px 38px;
     }
 
+    /* bocca di ingresso per lo swap (buco) */
+    .machine-left .swap-mouth {
+      position: absolute;
+      left: 50%;
+      top: -8px;
+      transform: translateX(-50%);
+      width: 86px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 50% 0, rgba(255,255,255,0.3), transparent 60%),
+        linear-gradient(180deg, #191e2a, #050811);
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.85),
+        inset 0 2px 3px rgba(255,255,255,0.35),
+        inset 0 -2px 4px rgba(0,0,0,0.9);
+      z-index: 6;
+    }
+
     /* centro: completamente giallo + glow + badge BTC -------- */
 
     .machine-center .machine-tank {
@@ -359,41 +377,20 @@
       100% { transform: translateX(390px); opacity: 0; }
     }
 
-    /* badge BTC accanto al tank sinistro */
-    .btc-badge {
-      position: absolute;
-      left: -32px;
-      top: 45%;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 30% 25%, #ffffff, #ffe3a0 48%, #ffb347 72%, #c26d25 90%);
-      box-shadow:
-        0 0 18px rgba(255, 200, 80, 0.9),
-        0 8px 16px rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: #1a130a;
-      font-weight: 700;
-    }
-
     /* SWAP: monete Nummus che ENTRANO nel tank --------------- */
 
     .swap-stream {
       position: absolute;
-      left: 18%;          /* più sopra l'apertura del tank */
-      top: -18px;
-      width: 140px;
-      height: 160px;
+      left: 10%;          /* più laterale */
+      top: 18px;          /* più in basso, non copre il testo */
+      width: 150px;
+      height: 150px;
       border-radius: 120px 120px 40px 100px;
       background: linear-gradient(120deg, rgba(160, 220, 255, 0.3), transparent 70%);
       box-shadow:
         0 0 18px rgba(120, 220, 255, 0.35);
       overflow: visible;
-      z-index: 5;         /* sopra il vetro, così sembrano entrare dentro */
+      z-index: 5;
     }
 
     .swap-coin,
@@ -408,11 +405,6 @@
       box-shadow:
         0 0 10px rgba(150, 210, 255, 0.9),
         0 4px 10px rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: transparent;
-      font-weight: 700;
     }
 
     .swap-coin {
@@ -421,15 +413,15 @@
       animation: swapFlow 3s ease-in-out infinite;
     }
 
-    .swap-coin:nth-child(1) { left: 10px;  top: -22px; animation-delay: 0s; }
-    .swap-coin:nth-child(2) { left: 40px;  top: -38px; animation-delay: 0.5s; }
-    .swap-coin:nth-child(3) { left: 70px;  top: -50px; animation-delay: 1.0s; }
+    .swap-coin:nth-child(1) { left: 0px;   top: -10px; animation-delay: 0s; }
+    .swap-coin:nth-child(2) { left: 32px;  top: -26px; animation-delay: 0.5s; }
+    .swap-coin:nth-child(3) { left: 68px;  top: -40px; animation-delay: 1.0s; }
 
     @keyframes swapFlow {
       0%   { transform: translate(0, 0); opacity: 0; }
       10%  { opacity: 1; }
-      70%  { transform: translate(26px, 90px); opacity: 1; }   /* entrano nella cupola */
-      100% { transform: translate(30px, 120px); opacity: 0; }  /* dentro il tank, poi spariscono */
+      70%  { transform: translate(48px, 78px); opacity: 1; }  /* entrano nella bocca */
+      100% { transform: translate(60px, 110px); opacity: 0; } /* dentro il tank */
     }
 
     /* BTC "nato" nel liquido dopo lo swap -------------------- */
@@ -452,17 +444,19 @@
       font-weight: 700;
       bottom: 17%;
       left: 36%;
-      animation: btcBubble 2.8s ease-in-out infinite alternate;
+      animation: btcBubble 2.8s ease-in-out infinite;
     }
 
     .swap-btc--2 {
       left: 54%;
-      animation-delay: 1.2s;
+      animation-delay: 1.3s;
     }
 
     @keyframes btcBubble {
-      0%   { transform: translateY(0);   opacity: 0.7; }
-      100% { transform: translateY(-10px); opacity: 1; }
+      0%   { transform: translateY(0);   opacity: 0; }
+      20%  { opacity: 1; }
+      70%  { transform: translateY(-10px); opacity: 1; }
+      100% { transform: translateY(-14px); opacity: 0; }
     }
 
     /* BURN: fiamma + monete Nummus che cadono ---------------- */
@@ -530,16 +524,16 @@
 
     .dao-badge {
       position: absolute;
-      right: 260px;
-      top: 80px;
-      width: 64px;
-      height: 64px;
+      right: 340px;   /* più a sinistra rispetto a prima */
+      top: 86px;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
       background:
-        radial-gradient(circle at 30% 15%, rgba(130, 255, 230, 0.9), transparent 55%),
-        radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 1));
+        radial-gradient(circle at 30% 15%, rgba(130, 255, 230, 0.75), transparent 55%),
+        radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 1));
       box-shadow:
-        0 0 22px rgba(80, 255, 195, 0.95),
+        0 0 16px rgba(60, 220, 180, 0.7),
         0 10px 18px rgba(0, 0, 0, 0.9);
       display: flex;
       align-items: center;
@@ -556,13 +550,15 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.12);
     }
 
     .dao-badge-inner img {
-      width: 80%;
-      height: 80%;
+      width: 82%;
+      height: 82%;
       object-fit: contain;
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.85));
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
     }
 
     /* Descrizioni sotto -------------------------------------- */
@@ -628,10 +624,9 @@
             <div class="swap-coin"></div>
           </div>
 
-          <div class="btc-badge">₿</div>
-
           <div class="machine-tank">
             <div class="machine-tank-inner"></div>
+            <div class="swap-mouth"></div>
             <div class="machine-liquid machine-liquid--green"></div>
 
             <!-- BTC che "nasce" dentro al liquido -->
