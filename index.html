@@ -521,19 +521,20 @@
       right: 260px;
       top: 86px;
 
-      width: 70px;
-      height: 70px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
 
-      background: radial-gradient(circle at 50% 50%, rgba(80, 255, 220, 0.15), #04070d 70%);
+      /* glow molto più delicato */
+      background: radial-gradient(circle at 50% 50%, rgba(80, 255, 220, 0.05), #05070d 75%);
       box-shadow:
-        0 0 4px rgba(60, 220, 180, 0.25),
-        0 4px 10px rgba(0, 0, 0, 0.7);
+        0 0 3px rgba(60, 220, 180, 0.15),
+        0 0 8px rgba(0, 0, 0, 0.6);
 
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px;
+      padding: 4px;
       z-index: 20;
     }
 
@@ -541,19 +542,19 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: radial-gradient(circle at 50% 40%, #05070d, #000000 90%);
+      background: radial-gradient(circle at 50% 40%, #000000 40%, #080b0f 90%);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     }
 
     .dao-badge-inner img {
-      width: 85%;
-      height: 85%;
+      width: 80%;
+      height: 80%;
       object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
     }
 
     /* Descrizioni sotto -------------------------------------- */
