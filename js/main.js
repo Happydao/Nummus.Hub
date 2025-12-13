@@ -135,6 +135,7 @@
     if (!triggerNode || !panelNode) return;
 
     let hideTimer;
+    let touched = false;
     const setActive = (isActive) => {
       clearTimeout(hideTimer);
       panelNode.classList.toggle('active', isActive);
@@ -155,9 +156,17 @@
       node.addEventListener('focusin', show);
       node.addEventListener('focusout', hide);
       node.addEventListener('wheel', show, { passive: true });
+      node.addEventListener('touchstart', () => {
+        touched = true;
+        show();
+      }, { passive: true });
     });
 
     triggerNode.addEventListener('click', (event) => {
+      if (touched) {
+        touched = false;
+        return;
+      }
       event.preventDefault();
       const isActive = panelNode.classList.contains('active');
       setActive(!isActive);

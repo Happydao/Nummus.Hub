@@ -758,7 +758,7 @@ body {
 .pipe-horizontal.pipe-left-center {
   width: 420px;
   left: 50%;
-  top: 46%;
+  top: 40%;
   transform: translateX(-320px);
   overflow: hidden;
 }
@@ -766,7 +766,7 @@ body {
 .pipe-horizontal.pipe-center-right {
   width: 420px;
   left: 50%;
-  top: 46%;
+  top: 40%;
   transform: translateX(-20px);
   opacity: 0.92;
 }
@@ -1124,13 +1124,13 @@ body {
 
 .advanced-cta--vault {
   left: 34%;
-  bottom: 332px;
+  bottom: 413px;
   transform: translateX(-50%);
 }
 
 .advanced-cta--burn {
-  right: 22%;
-  bottom: 350px;
+  right: 23%;
+  bottom: 429px;
 }
 
 .advanced-button {
@@ -1194,6 +1194,67 @@ body {
 .advanced-panel a:hover {
   color: #b9ecff;
   border-bottom-color: #b9ecff;
+}
+
+.hub-links {
+  margin-top: 28px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hub-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+  color: #f7fbff;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  text-decoration: none;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.45),
+    0 0 10px rgba(255, 255, 255, 0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.hub-link:hover,
+.hub-link:focus-visible {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 12px 22px rgba(0, 0, 0, 0.5),
+    0 0 14px rgba(255, 255, 255, 0.2);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.hub-link--nummus {
+  width: 54px;
+  height: 54px;
+  padding: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.2), rgba(5, 7, 14, 0.9));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 12px 18px rgba(0, 0, 0, 0.55),
+    0 0 14px rgba(255, 220, 120, 0.35);
+}
+
+.hub-link--nummus img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hub-link--pill {
+  min-width: 150px;
 }
 
 .advanced-panel-combined {
@@ -1375,7 +1436,7 @@ body {
     display: flex;
     position: static;
     width: 100%;
-    margin: 12px 0 8px;
+    margin: 12px 0 12px;
     align-items: center;
     justify-content: center;
   }
@@ -1476,7 +1537,7 @@ body {
     position: absolute;
     left: 50%;
     top: 210px;
-    bottom: 320px;
+    bottom: 380px;
     width: 22px;
     transform: translateX(-50%);
     border-radius: 18px;
