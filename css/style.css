@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap");
+
 :root {
   --bg-main: #050816;
-  --font-display: "Space Grotesk", "Inter", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --font-body: "Cormorant Garamond", "Times New Roman", serif;
   --accent-blue: #29abe2;
   --accent-green: #4ade80;
   --accent-orange: #ffb347;
@@ -45,18 +47,22 @@ body {
 
 .hub-title {
   font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #fdfcff;
   margin-bottom: 10px;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
 .hub-subtitle {
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--text-soft);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /* Pannello centrale ---------------------------------------- */
@@ -384,23 +390,38 @@ body {
           0 0 12px rgba(255, 180, 60, 0.5); }
 }
 
+@keyframes vaultValueGlow {
+  0%   { text-shadow:
+          0 2px 0 rgba(255, 255, 255, 0.46),
+          0 0 18px rgba(184, 90, 0, 0.8),
+          0 0 32px rgba(184, 90, 0, 0.65); }
+  50%  { text-shadow:
+          0 3px 0 rgba(255, 255, 255, 0.54),
+          0 0 29px rgba(184, 90, 0, 1),
+          0 0 47px rgba(220, 120, 20, 0.85); }
+  100% { text-shadow:
+          0 2px 0 rgba(255, 255, 255, 0.46),
+          0 0 21px rgba(184, 90, 0, 0.82),
+          0 0 36px rgba(184, 90, 0, 0.68); }
+}
+
 .vault-stats {
   position: absolute;
   left: 50%;
   top: 18px;
   bottom: 32px;
   transform: translateX(-50%);
-  width: 170px;
+  width: 210px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  gap: 4px;
+  gap: 8px;
+  padding: 0;
   background: transparent;
   border-radius: 0;
   border: none;
   box-shadow: none;
-  padding: 0;
   text-align: center;
   color: #0a0a0a;
   z-index: 4;
@@ -408,22 +429,34 @@ body {
 
 .vault-stat {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  font-size: 0.76rem;
+  column-gap: 14px;
+  font-size: 0.9rem;
   margin-bottom: 2px;
-  color: #0a0a0a;
-  font-weight: 600;
+  color: #1c0f04;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 8px rgba(255, 180, 60, 0.4);
+}
+
+.vault-stat-label {
+  display: inline-block;
+  color: inherit;
+  font-weight: 700;
 }
 
 .vault-stat strong {
-  font-size: 0.9rem;
-  color: #000;
+  font-size: 1.26rem;
+  color: #120800;
   font-weight: 800;
   text-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.35),
-    0 0 12px rgba(255, 180, 60, 0.6);
-  animation: vaultStatPulse 2s ease-in-out infinite;
+    0 2px 0 rgba(255, 255, 255, 0.4),
+    0 0 16px rgba(184, 90, 0, 0.85),
+    0 0 28px rgba(184, 90, 0, 0.65);
+  animation: vaultValueGlow 2.3s ease-in-out infinite;
 }
 
 .vault-details-trigger {
@@ -497,20 +530,33 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 6px;
 }
 
 .burn-metrics .vault-stat {
   color: #fefefe;
-  font-size: 0.7rem;
-  margin-bottom: 4px;
-  column-gap: 6px;
+  font-size: 0.88rem;
+  margin-bottom: 0;
+  column-gap: 14px;
   width: 100%;
-  max-width: 150px;
+  max-width: 200px;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(255, 200, 180, 0.4);
 }
 
 .burn-metrics .vault-stat strong {
-  color: #fff;
-  font-size: 0.79rem;
+  color: #fffaf3;
+  font-size: 1rem;
+  font-weight: 800;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.35),
+    0 0 14px rgba(255, 180, 140, 0.7),
+    0 0 22px rgba(255, 150, 100, 0.6);
+  animation: burnValueGlow 2.5s ease-in-out infinite;
 }
 
 .burn-stats .vault-details-trigger {
@@ -526,6 +572,21 @@ body {
 .burn-stats .vault-details-card {
   width: 90%;
   max-width: 220px;
+}
+
+@keyframes burnValueGlow {
+  0%   { text-shadow:
+          0 1px 0 rgba(0, 0, 0, 0.35),
+          0 0 10px rgba(255, 200, 170, 0.45),
+          0 0 18px rgba(255, 170, 120, 0.35); }
+  50%  { text-shadow:
+          0 2px 0 rgba(0, 0, 0, 0.35),
+          0 0 16px rgba(255, 220, 190, 0.9),
+          0 0 28px rgba(255, 170, 120, 0.7); }
+  100% { text-shadow:
+          0 1px 0 rgba(0, 0, 0, 0.35),
+          0 0 12px rgba(255, 200, 170, 0.55),
+          0 0 20px rgba(255, 170, 120, 0.45); }
 }
 
 .vault-details-trigger:hover {
@@ -709,6 +770,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border: 2px solid rgba(184, 90, 0, 0.95);
   box-shadow:
     0 0 10px rgba(255, 188, 80, 0.9),
     0 3px 6px rgba(0, 0, 0, 0.7);
@@ -719,10 +781,10 @@ body {
   color: transparent;
   text-indent: -9999px;
   font-weight: 700;
-  animation: btcMove 3s linear infinite;
+  animation: btcMove 3.9s linear infinite;
 }
 .btc-flow:nth-child(1) { animation-delay: 0s; }
-.btc-flow:nth-child(2) { animation-delay: 1.5s; }
+.btc-flow:nth-child(2) { animation-delay: 1.95s; }
 
 @keyframes btcMove {
   0%   { transform: translateX(-40px); opacity: 0; }
@@ -790,6 +852,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border: 2px solid rgba(184, 90, 0, 0.95);
   box-shadow:
     0 0 14px rgba(255, 210, 120, 0.8),
     0 6px 10px rgba(0, 0, 0, 0.8);
@@ -1100,4 +1163,14 @@ body {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+.hub-footer {
+  margin-top: 42px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(222, 214, 194, 0.9);
 }
