@@ -3,579 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=1440" />
+  <meta http-equiv="Cache-Control" content="no-store" />
   <title>Nummus Hub</title>
-
-  <style>
-    :root {
-      --bg-main: #050816;
-      --accent-blue: #29abe2;
-      --accent-green: #4ade80;
-      --accent-orange: #ffb347;
-      --accent-burn: #ff4b6b;
-      --metal-dark: #222738;
-      --metal-mid: #434a63;
-      --metal-light: #aab3d8;
-      --glass-highlight: rgba(255, 255, 255, 0.6);
-      --text-soft: #c8d2ff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #202a4f 0, #050816 55%, #02030a 100%);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      color: #f9f9ff;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 32px 16px;
-    }
-
-    .hub-root {
-      width: 1200px;
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    /* Header -------------------------------------------------- */
-
-    .hub-header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .hub-title {
-      font-size: 1.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #fdfcff;
-      margin-bottom: 6px;
-    }
-
-    .hub-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-soft);
-      opacity: 0.9;
-    }
-
-    /* Pannello centrale ---------------------------------------- */
-
-    .hub-panel {
-      position: relative;
-      margin-top: 24px;
-      padding: 40px 46px 32px;
-      border-radius: 24px;
-      background:
-        radial-gradient(circle at 20% 0, rgba(58, 119, 255, 0.25), transparent 55%),
-        radial-gradient(circle at 80% 0, rgba(255, 140, 80, 0.22), transparent 55%),
-        linear-gradient(145deg, #050818, #050818 25%, #060b18 60%, #040516);
-      box-shadow:
-        0 28px 80px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(255, 255, 255, 0.02);
-      overflow: visible;
-    }
-
-    /* Griglia macchine ---------------------------------------- */
-
-    .machines-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 80px;
-      align-items: flex-end;
-      position: relative;
-      padding: 30px 10px 0;
-    }
-
-    .machine {
-      position: relative;
-      height: 340px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-    }
-
-    .machine-header {
-      position: absolute;
-      top: -30px;
-      text-align: center;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      opacity: 0.95;
-    }
-
-    .machine-header span {
-      display: block;
-      margin-top: 4px;
-      font-size: 0.7rem;
-      opacity: 0.75;
-    }
-
-    .machine-base {
-      position: relative;
-      width: 230px;
-      height: 60px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, var(--metal-mid), #141722);
-      box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.9),
-        inset 0 2px 3px rgba(255, 255, 255, 0.2),
-        inset 0 -4px 6px rgba(0, 0, 0, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .machine-base::before {
-      content: "";
-      position: absolute;
-      inset: 6px 26px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, #252c42, #101321);
-    }
-
-    .base-label {
-      position: relative;
-      z-index: 1;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #e2e7ff;
-      opacity: 0.9;
-    }
-
-    .machine-tank {
-      position: absolute;
-      left: 50%;
-      bottom: 60px;
-      transform: translateX(-50%);
-      width: 180px;
-      height: 260px;
-      border-radius: 90px;
-      background: linear-gradient(180deg, #111829, #060915);
-      box-shadow:
-        0 0 0 2px rgba(0, 0, 0, 0.85),
-        0 0 0 3px rgba(255, 255, 255, 0.08),
-        inset 0 0 0 2px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-    }
-
-    .machine-tank-inner {
-      position: absolute;
-      inset: 16px;
-      border-radius: 80px;
-      background:
-        radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.45), transparent 55%),
-        linear-gradient(180deg, rgba(90, 240, 255, 0.08), rgba(0, 130, 255, 0.08));
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.16),
-        inset 0 0 34px rgba(0, 204, 255, 0.18);
-    }
-
-    .machine-liquid {
-      position: absolute;
-      left: 8%;
-      bottom: 10%;
-      width: 84%;
-      height: 32%;
-      border-radius: 999px;
-      background: radial-gradient(circle at 50% 0, var(--glass-highlight), transparent 55%),
-        linear-gradient(180deg, rgba(0, 190, 255, 0.94), rgba(0, 95, 155, 0.98));
-      box-shadow:
-        0 -4px 12px rgba(255, 255, 255, 0.35),
-        0 12px 24px rgba(0, 0, 0, 0.85);
-    }
-
-    .machine-liquid--green {
-      background: radial-gradient(circle at 50% 0, var(--glass-highlight), transparent 55%),
-        linear-gradient(180deg, rgba(138, 255, 200, 0.9), rgba(0, 170, 105, 0.98));
-    }
-
-    /* sinistra: cupola un po' più aperta */
-    .machine-left .machine-tank {
-      border-radius: 90px 90px 44px 44px;
-    }
-    .machine-left .machine-tank-inner {
-      border-radius: 82px 82px 38px 38px;
-    }
-
-    /* bocca di ingresso per lo swap (buco) */
-    .machine-left .swap-mouth {
-      position: absolute;
-      left: 50%;
-      top: -8px;
-      transform: translateX(-50%);
-      width: 86px;
-      height: 22px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 50% 0, rgba(255,255,255,0.3), transparent 60%),
-        linear-gradient(180deg, #191e2a, #050811);
-      box-shadow:
-        0 2px 4px rgba(0,0,0,0.85),
-        inset 0 2px 3px rgba(255,255,255,0.35),
-        inset 0 -2px 4px rgba(0,0,0,0.9);
-      z-index: 6;
-    }
-
-    /* centro: completamente giallo + glow + badge BTC -------- */
-
-    .machine-center .machine-tank {
-      border-radius: 90px;
-      background: radial-gradient(circle at 30% 0, #fff7d0, #ffd76f 55%, #b87b1e 100%);
-      box-shadow:
-        0 0 0 3px rgba(0, 0, 0, 0.9),
-        0 0 0 4px rgba(255, 255, 255, 0.15),
-        0 0 36px rgba(255, 210, 90, 0.8);
-      animation: vaultGlow 2.4s ease-in-out infinite alternate;
-    }
-
-    .machine-center .machine-tank-inner {
-      inset: 18px;
-      border-radius: 74px;
-      background:
-        radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.85), transparent 55%),
-        linear-gradient(180deg, rgba(255, 235, 170, 0.86), rgba(255, 185, 35, 0.95));
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.38),
-        inset 0 0 40px rgba(255, 215, 120, 0.9);
-    }
-
-    @keyframes vaultGlow {
-      0% { box-shadow:
-            0 0 0 3px rgba(0, 0, 0, 0.9),
-            0 0 0 4px rgba(255, 255, 255, 0.15),
-            0 0 20px rgba(255, 210, 90, 0.65); }
-      100% { box-shadow:
-            0 0 0 3px rgba(0, 0, 0, 0.9),
-            0 0 0 4px rgba(255, 255, 255, 0.25),
-            0 0 46px rgba(255, 230, 140, 1); }
-    }
-
-    .vault-btc-badge {
-      position: absolute;
-      left: 50%;
-      bottom: 92px;
-      transform: translateX(-50%);
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 30% 25%, #ffffff, #ffe3a0 48%, #ffb347 72%, #c26d25 90%);
-      box-shadow:
-        0 0 18px rgba(255, 205, 110, 0.9),
-        0 8px 16px rgba(0, 0, 0, 0.85);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: #1a130a;
-      font-weight: 700;
-    }
-
-    /* destra: niente liquido blu */
-    .machine-right .machine-liquid {
-      display: none;
-    }
-
-    .machine-cap {
-      position: absolute;
-      left: 50%;
-      bottom: 60px;
-      transform: translate(-50%, 60%);
-      width: 190px;
-      height: 40px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--metal-light), #171a25);
-      box-shadow:
-        0 14px 26px rgba(0, 0, 0, 0.8),
-        inset 0 2px 3px rgba(255, 255, 255, 0.35),
-        inset 0 -3px 6px rgba(0, 0, 0, 0.8);
-    }
-
-    .machine-cap::before {
-      content: "";
-      position: absolute;
-      inset: 4px 18px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #5d6683, #262b3a);
-    }
-
-    /* tubi orizzontali --------------------------------------- */
-
-    .pipe-horizontal {
-      position: absolute;
-      height: 26px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, #f5f7ff, #cbd3f0);
-      box-shadow:
-        0 0 0 2px rgba(0, 0, 0, 0.85),
-        inset 0 0 6px rgba(255, 255, 255, 0.6),
-        0 10px 20px rgba(0, 0, 0, 0.75);
-    }
-
-    .pipe-horizontal::before {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border-radius: 14px;
-      background: linear-gradient(90deg, #d5dbf6, #b5bee8);
-      opacity: 0.9;
-    }
-
-    .pipe-horizontal.pipe-left-center {
-      width: 420px;
-      left: 50%;
-      top: 56%;
-      transform: translateX(-320px);
-      overflow: hidden;
-    }
-
-    .pipe-horizontal.pipe-center-right {
-      width: 420px;
-      left: 50%;
-      top: 56%;
-      transform: translateX(-20px);
-      opacity: 0.92;
-    }
-
-    .btc-flow {
-      position: absolute;
-      top: 4px;
-      width: 30px;
-      height: 20px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #ffffff, #ffe7b0 50%, #ffb347 80%);
-      box-shadow:
-        0 0 10px rgba(255, 188, 80, 0.9),
-        0 3px 6px rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      color: #1b130a;
-      font-weight: 700;
-      animation: btcMove 3s linear infinite;
-    }
-    .btc-flow:nth-child(1) { animation-delay: 0s; }
-    .btc-flow:nth-child(2) { animation-delay: 1.5s; }
-
-    @keyframes btcMove {
-      0%   { transform: translateX(-40px); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { transform: translateX(370px); opacity: 1; }
-      100% { transform: translateX(390px); opacity: 0; }
-    }
-
-    /* SWAP: monete Nummus che ENTRANO nel tank --------------- */
-
-    .swap-stream {
-      position: absolute;
-      left: 10%;
-      top: 18px;
-      width: 150px;
-      height: 150px;
-      border-radius: 120px 120px 40px 100px;
-      background: linear-gradient(120deg, rgba(160, 220, 255, 0.3), transparent 70%);
-      box-shadow:
-        0 0 18px rgba(120, 220, 255, 0.35);
-      overflow: visible;
-      z-index: 5;
-    }
-
-    .swap-coin,
-    .burn-coin,
-    .dao-coin {
-      position: absolute;
-      border-radius: 50%;
-      background-image: url("img/nummus.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      box-shadow:
-        0 0 10px rgba(150, 210, 255, 0.9),
-        0 4px 10px rgba(0, 0, 0, 0.9);
-    }
-
-    .swap-coin {
-      width: 34px;
-      height: 34px;
-      animation: swapFlow 3s ease-in-out infinite;
-    }
-
-    .swap-coin:nth-child(1) { left: 0px;   top: -10px; animation-delay: 0s; }
-    .swap-coin:nth-child(2) { left: 32px;  top: -26px; animation-delay: 0.5s; }
-    .swap-coin:nth-child(3) { left: 68px;  top: -40px; animation-delay: 1.0s; }
-
-    @keyframes swapFlow {
-      0%   { transform: translate(0, 0); opacity: 0; }
-      10%  { opacity: 1; }
-      70%  { transform: translate(48px, 78px); opacity: 1; }
-      100% { transform: translate(60px, 110px); opacity: 0; }
-    }
-
-    .swap-btc {
-      position: absolute;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 30% 25%, #ffffff, #ffe3a0 48%, #ffb347 72%, #c26d25 90%);
-      box-shadow:
-        0 0 14px rgba(255, 210, 120, 0.8),
-        0 6px 10px rgba(0, 0, 0, 0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      color: #1a130a;
-      font-weight: 700;
-      bottom: 17%;
-      left: 36%;
-      animation: btcBubble 2.8s ease-in-out infinite;
-    }
-
-    .swap-btc--2 {
-      left: 54%;
-      animation-delay: 1.3s;
-    }
-
-    @keyframes btcBubble {
-      0%   { transform: translateY(0);   opacity: 0; }
-      20%  { opacity: 1; }
-      70%  { transform: translateY(-10px); opacity: 1; }
-      100% { transform: translateY(-14px); opacity: 0; }
-    }
-
-    /* BURN: fiamma + monete Nummus che cadono ---------------- */
-
-    .burn-fire {
-      position: absolute;
-      left: 50%;
-      bottom: 22%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 110px;
-      background:
-        radial-gradient(circle at 30% 15%, rgba(255, 255, 255, 0.95), transparent 55%),
-        radial-gradient(circle at 70% 20%, rgba(255, 200, 200, 0.9), transparent 60%),
-        radial-gradient(circle at 50% 80%, #ff3030, transparent 60%);
-      mix-blend-mode: screen;
-      filter: blur(1px);
-      opacity: 0.9;
-      animation: burnPulse 1.8s ease-in-out infinite alternate;
-    }
-
-    @keyframes burnPulse {
-      0% { transform: translateX(-50%) scaleY(0.96); opacity: 0.7; }
-      100% { transform: translateX(-50%) scaleY(1.08); opacity: 1; }
-    }
-
-    .burn-coin {
-      width: 28px;
-      height: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: burnDrop 2.1s linear infinite;
-    }
-    .burn-coin:nth-child(1) { animation-delay: 0s; }
-    .burn-coin:nth-child(2) { animation-delay: 1.0s; }
-
-    @keyframes burnDrop {
-      0%   { top: 6%; opacity: 0; }
-      10%  { opacity: 1; }
-      70%  { top: 54%; opacity: 1; }
-      100% { top: 62%; opacity: 0; }
-    }
-
-    .burn-supply-tag {
-      position: absolute;
-      left: 50%;
-      bottom: 105px;
-      transform: translateX(-50%);
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(40, 40, 60, 0.9));
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #fefefe;
-      box-shadow:
-        0 0 10px rgba(0, 0, 0, 0.8),
-        0 0 14px rgba(255, 120, 120, 0.5);
-    }
-
-    /* Torrino DAO: logo bianco su sfondo scuro, attaccato al Burn Engine */
-
-    .dao-badge {
-      position: absolute;
-      /* attaccato lateralmente al bordo del Burn Engine */
-      right: 260px;
-      top: 86px;
-
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-
-      /* glow molto più delicato */
-      background: radial-gradient(circle at 50% 50%, rgba(80, 255, 220, 0.05), #05070d 75%);
-      box-shadow:
-        0 0 3px rgba(60, 220, 180, 0.15),
-        0 0 8px rgba(0, 0, 0, 0.6);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px;
-      z-index: 20;
-    }
-
-    .dao-badge-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: radial-gradient(circle at 50% 40%, #000000 40%, #080b0f 90%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-    }
-
-    .dao-badge-inner img {
-      width: 80%;
-      height: 80%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
-    }
-
-    /* Descrizioni sotto -------------------------------------- */
-
-    .machines-descriptions {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: rgba(203, 213, 255, 0.95);
-    }
-
-    .machines-descriptions p {
-      max-width: 300px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-  </style>
+  <link rel="stylesheet" href="css/style.css?v=14" />
 </head>
 
 <body>
@@ -588,13 +18,6 @@
     </header>
 
     <main class="hub-panel">
-      <!-- Torrino DAO: logo ufficiale -->
-      <div class="dao-badge">
-        <div class="dao-badge-inner">
-          <img src="img/torrino-dao.png" alt="Torrino DAO" />
-        </div>
-      </div>
-
       <!-- tubo sinistra -> centro con due BTC -->
       <div class="pipe-horizontal pipe-left-center">
         <div class="btc-flow">₿</div>
@@ -620,18 +43,30 @@
             <div class="swap-coin"></div>
           </div>
 
-          <div class="machine-tank">
-            <div class="machine-tank-inner"></div>
-            <div class="swap-mouth"></div>
-            <div class="machine-liquid machine-liquid--green"></div>
+            <div class="machine-tank">
+              <div class="machine-tank-inner"></div>
+              <div class="swap-mouth"></div>
+              <div class="machine-liquid machine-liquid--green"></div>
 
-            <!-- BTC che "nasce" dentro al liquido -->
-            <div class="swap-btc">₿</div>
-            <div class="swap-btc swap-btc--2">₿</div>
-          </div>
+              <!-- BTC che "nasce" dentro al liquido -->
+              <div class="swap-btc">₿</div>
+              <div class="swap-btc swap-btc--2">₿</div>
 
-          <div class="machine-cap"></div>
-          <div class="machine-base">
+              <div class="swap-stats">
+                <button class="vault-details-trigger" id="swap-details-trigger" type="button">
+                  Detail swap
+                </button>
+                <div class="vault-details-panel" id="swap-details-panel">
+                  <div class="vault-details-card">
+                    <div class="vault-details-title">Recent swaps</div>
+                    <ul class="vault-transfers" id="swap-transfers"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="machine-cap"></div>
+            <div class="machine-base">
             <div class="base-label">Swap Engine</div>
           </div>
         </article>
@@ -644,7 +79,30 @@
           </div>
 
           <div class="machine-tank">
+            <div class="vault-emblem">
+              <div class="vault-emblem-ring"></div>
+            </div>
             <div class="machine-tank-inner"></div>
+
+            <div class="vault-stats">
+              <div class="vault-stat">
+                <span class="vault-stat-label">tBTC</span>
+                <strong id="vault-balance">--</strong>
+              </div>
+              <div class="vault-stat">
+                <span class="vault-stat-label">VALUE</span>
+                <strong id="vault-usd">--</strong>
+              </div>
+              <button class="vault-details-trigger" id="vault-details-trigger" type="button">
+                Detail inflow
+              </button>
+              <div class="vault-details-panel" id="vault-details-panel">
+                <div class="vault-details-card">
+                  <div class="vault-details-title">Last tBTC transfers</div>
+                  <ul class="vault-transfers" id="vault-transfers"></ul>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="vault-btc-badge">₿</div>
           <div class="machine-cap"></div>
@@ -660,16 +118,45 @@
             <span>Supply Reduction</span>
           </div>
 
-          <div class="machine-tank">
-            <div class="machine-tank-inner"></div>
-
-            <!-- monete Nummus che cadono + fiamma -->
-            <div class="burn-coin"></div>
-            <div class="burn-coin"></div>
-            <div class="burn-fire"></div>
+          <!-- Torrino DAO: logo ufficiale a lato del Burn Engine -->
+          <div class="dao-badge">
+            <div class="dao-badge-inner">
+              <img src="img/torrino-dao.png" alt="Torrino DAO" />
+            </div>
           </div>
 
-          <div class="burn-supply-tag">NEW SUPPLY</div>
+            <div class="machine-tank">
+              <div class="machine-tank-inner"></div>
+
+              <!-- monete Nummus che cadono + fiamma -->
+              <div class="burn-coin"></div>
+              <div class="burn-coin"></div>
+              <div class="burn-fire"></div>
+
+              <div class="burn-stats">
+                <div class="burn-metrics">
+                  <div class="vault-stat">
+                    <span class="vault-stat-label">Burned</span>
+                    <strong id="burn-total">--</strong>
+                  </div>
+                  <div class="vault-stat">
+                    <span class="vault-stat-label">New Supply</span>
+                    <strong id="burn-supply">--</strong>
+                  </div>
+                </div>
+                <button class="vault-details-trigger" id="burn-details-trigger" type="button">
+                  Detail burn
+                </button>
+                <div class="vault-details-panel" id="burn-details-panel">
+                  <div class="vault-details-card">
+                    <div class="vault-details-title">Recent burns</div>
+                    <ul class="vault-transfers" id="burn-transfers"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="burn-supply-tag">NEW SUPPLY</div>
 
           <div class="machine-cap"></div>
           <div class="machine-base">
@@ -681,19 +168,27 @@
       <!-- descrizioni sotto ai contenitori -->
       <section class="machines-descriptions">
         <p>
-          Gli swap di Nummus in tBTC alimentano la riserva Bitcoin, che confluisce nel wallet
-          di accumulo.
+          The Swap Engine automates accumulation: donations from large holders stream into the
+          <a href="https://solscan.io/account/AoXJQjDcK7C28ecdNVQjGjXW8V6nxR7NY7rBFhdhUc5B" target="_blank" rel="noopener noreferrer">swap wallet</a>
+          and a smart contract executes one swap every ~12 hours to build tBTC. These donations
+          are locked and released on
+          <a href="https://app.streamflow.finance/contract/solana/mainnet/9vFKfX2CpvnwVEi7CP4NfHkEuCDa6LMo2GrZpX7KEpf3" target="_blank" rel="noopener noreferrer">Streamflow</a>,
+          enabling a steady Dollar-Cost Averaging plan into tBTC via DEX routes like Jupiter.
         </p>
         <p>
-          Il tBTC accumulato diventa la tesoreria verificabile on-chain di Nummus, custodita
-          nel Vault.
+          All accumulated tBTC flows into the Vault, a decentralized and verifiable treasury
+          on-chain. Holders can see the balances and participate in governance directly in the
+          <a href="https://v2.realms.today/dao/2Czvw7p29thfqNJznuicygBKxh33xoCMuGMH7zbPQ2gp/treasury" target="_blank" rel="noopener noreferrer">tBTC treasury on Realms</a>.
         </p>
         <p>
-          La Torrino DAO riacquista Nummus dal mercato e li invia al burn, riducendo in modo
-          permanente la supply.
+          The Burn Engine is fueled by the Torrino DAO community: trading profits are used to
+          buy back Nummus and send them to the burn address, permanently reducing supply. Join
+          the DAO and contribute to the burn strategy here:
+          <a href="https://happydao.github.io/torrino-dao-hub/" target="_blank" rel="noopener noreferrer">Torrino DAO Hub</a>.
         </p>
       </section>
     </main>
   </div>
 </body>
+<script src="js/main.js?v=14"></script>
 </html>
