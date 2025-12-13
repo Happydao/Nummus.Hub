@@ -535,20 +535,20 @@ body {
   z-index: 18;
 }
 
-.burn-metrics {
-  width: 100%;
-  padding: 0 4px;
-  display: flex;
-  flex-direction: column;
+  .burn-metrics {
+    width: 100%;
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
   align-items: center;
   gap: 6px;
 }
 
-.burn-metrics .vault-stat {
-  color: #fefefe;
-  font-size: 0.88rem;
-  margin-bottom: 0;
-  column-gap: 14px;
+  .burn-metrics .vault-stat {
+    color: #fefefe;
+    font-size: 0.88rem;
+    margin-bottom: 0;
+    column-gap: 14px;
   width: 100%;
   max-width: 200px;
   justify-content: center;
@@ -559,22 +559,22 @@ body {
     0 0 10px rgba(255, 200, 180, 0.4);
 }
 
-.burn-metrics .vault-stat strong {
-  color: #fffaf3;
-  font-size: 1rem;
-  font-weight: 800;
-  text-shadow:
+  .burn-metrics .vault-stat strong {
+    color: #fffaf3;
+    font-size: 1rem;
+    font-weight: 800;
+    text-shadow:
     0 1px 0 rgba(0, 0, 0, 0.35),
     0 0 14px rgba(255, 180, 140, 0.7),
     0 0 22px rgba(255, 150, 100, 0.6);
   animation: burnValueGlow 2.5s ease-in-out infinite;
 }
 
-.burn-stats .vault-details-trigger {
-  width: 120px;
-  font-size: 0.62rem;
-  margin-top: 8px;
-}
+  .burn-stats .vault-details-trigger {
+    width: 120px;
+    font-size: 0.62rem;
+    margin-top: 8px;
+  }
 
 .burn-stats .vault-details-panel {
   inset: 2px 6px;
@@ -1442,6 +1442,16 @@ body {
 
   .pipe-horizontal {
     display: none;
+  }
+
+  .burn-metrics .vault-stat {
+    font-size: 0.75rem;
+    column-gap: 8px;
+    line-height: 1.1;
+  }
+
+  .burn-metrics .vault-stat strong {
+    font-size: 0.84rem;
   }
 
   .swap-stream {
