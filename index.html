@@ -27,6 +27,25 @@
       <!-- tubo centro -> destra vuoto (solo collegamento) -->
       <div class="pipe-horizontal pipe-center-right"></div>
 
+      <!-- CTA avanzate -->
+      <div class="advanced-cta advanced-cta--vault">
+        <button class="advanced-button" type="button">Advanced study</button>
+        <div class="advanced-panel">
+          <p>
+            See the <a href="https://happydao.github.io/Nummus.VaultDAO/" target="_blank" rel="noopener noreferrer">advanced dashboard</a> of the swap engine and tBTC vault in detail.
+          </p>
+        </div>
+      </div>
+
+      <div class="advanced-cta advanced-cta--burn">
+        <button class="advanced-button" type="button">Advanced study</button>
+        <div class="advanced-panel">
+          <p>
+            See the <a href="https://happydao.github.io/Nummus.burn/" target="_blank" rel="noopener noreferrer">advanced burn dashboard</a> in detail.
+          </p>
+        </div>
+      </div>
+
       <!-- 3 macchine -->
       <section class="machines-grid">
         <!-- Swap Engine -->
@@ -168,22 +187,16 @@
       <!-- descrizioni sotto ai contenitori -->
       <section class="machines-descriptions">
         <p>
-          The Swap Engine automates accumulation: donations from large holders stream into the
-          <a href="https://solscan.io/account/AoXJQjDcK7C28ecdNVQjGjXW8V6nxR7NY7rBFhdhUc5B" target="_blank" rel="noopener noreferrer">swap wallet</a>
-          and a smart contract executes one swap every ~12 hours to build tBTC. These donations
-          are locked and released on
-          <a href="https://app.streamflow.finance/contract/solana/mainnet/9vFKfX2CpvnwVEi7CP4NfHkEuCDa6LMo2GrZpX7KEpf3" target="_blank" rel="noopener noreferrer">Streamflow</a>,
-          enabling a steady Dollar-Cost Averaging plan into tBTC via DEX routes like Jupiter.
+          Specifically, large holders contributed a significant portion of their allocations, which were
+          <a href="https://app.streamflow.finance/contract/solana/mainnet/9vFKfX2CpvnwVEi7CP4NfHkEuCDa6LMo2GrZpX7KEpf3" target="_blank" rel="noopener noreferrer">locked on Streamflow</a>
+          under a vesting release mechanism, into the
+          <a href="https://solscan.io/account/AoXJQjDcK7C28ecdNVQjGjXW8V6nxR7NY7rBFhdhUc5B" target="_blank" rel="noopener noreferrer">Swap Engine portfolio</a>. Swap Engine then automates the accumulation process: every 12 hours, a scheduled swap from Nummus into tBTC is executed, implementing a continuous Dollar-Cost Averaging (DCA) strategy into tBTC. These swaps are routed through optimized DEX pathways, such as Jupiter, to ensure the best possible execution in terms of liquidity and pricing.
         </p>
         <p>
-          All accumulated tBTC flows into the Vault, a decentralized and verifiable treasury
-          on-chain. Holders can see the balances and participate in governance directly in the
-          <a href="https://v2.realms.today/dao/2Czvw7p29thfqNJznuicygBKxh33xoCMuGMH7zbPQ2gp/treasury" target="_blank" rel="noopener noreferrer">tBTC treasury on Realms</a>.
+          All accumulated tBTC is funneled into the Vault, a decentralized, on-chain verifiable treasury collectively owned by Nummus holders. Holders can actively participate in governance directly over the <a href="https://v2.realms.today/dao/2Czvw7p29thfqNJznuicygBKxh33xoCMuGMH7zbPQ2gp/treasury" target="_blank" rel="noopener noreferrer">tBTC treasury via Realms</a>, contributing to the strategic decisions that govern its management and use.
         </p>
         <p>
-          The Burn Engine is fueled by the Torrino DAO community: trading profits are used to
-          buy back Nummus and send them to the burn address, permanently reducing supply. Join
-          the DAO and contribute to the burn strategy here:
+          The Burn Engine is fueled by the Torrino DAO community: trading profits are used to buy back Nummus and send them to the burn address, permanently reducing supply. Join the DAO and contribute to the burn strategy here:
           <a href="https://happydao.github.io/torrino-dao-hub/" target="_blank" rel="noopener noreferrer">Torrino DAO Hub</a>.
         </p>
       </section>

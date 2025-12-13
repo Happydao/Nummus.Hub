@@ -135,13 +135,19 @@
     if (!triggerNode || !panelNode) return;
 
     let hideTimer;
-    const show = () => {
+    const setActive = (isActive) => {
       clearTimeout(hideTimer);
-      panelNode.classList.add('active');
+      panelNode.classList.toggle('active', isActive);
+      triggerNode.setAttribute('aria-expanded', String(isActive));
     };
+
+    const show = () => setActive(true);
     const hide = () => {
-      hideTimer = setTimeout(() => panelNode.classList.remove('active'), 140);
+      hideTimer = setTimeout(() => setActive(false), 140);
     };
+
+    triggerNode.setAttribute('aria-controls', panelNode.id);
+    triggerNode.setAttribute('aria-expanded', 'false');
 
     [triggerNode, panelNode].forEach((node) => {
       node.addEventListener('mouseenter', show);
@@ -149,6 +155,21 @@
       node.addEventListener('focusin', show);
       node.addEventListener('focusout', hide);
       node.addEventListener('wheel', show, { passive: true });
+    });
+
+    triggerNode.addEventListener('click', (event) => {
+      event.preventDefault();
+      const isActive = panelNode.classList.contains('active');
+      setActive(!isActive);
+      event.stopPropagation();
+    });
+
+    panelNode.addEventListener('click', (event) => event.stopPropagation());
+
+    document.addEventListener('click', (event) => {
+      if (!panelNode.contains(event.target) && !triggerNode.contains(event.target)) {
+        setActive(false);
+      }
     });
   }
 
