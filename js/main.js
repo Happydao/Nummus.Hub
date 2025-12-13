@@ -176,4 +176,41 @@
   setupHover(trigger, panel);
   setupHover(swapTrigger, swapPanel);
   setupHover(burnTrigger, burnPanel);
+
+  const baseInfoTriggers = document.querySelectorAll('.base-info-trigger');
+  const mobileMq = window.matchMedia('(max-width: 760px)');
+  let baseInfoWired = false;
+
+  function resetBaseInfoPanels() {
+    baseInfoTriggers.forEach((btn) => {
+      const targetId = btn.dataset.infoId;
+      const panel = targetId ? document.getElementById(targetId) : null;
+      if (!panel) return;
+      panel.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function wireBaseInfoPanels() {
+    if (baseInfoWired || !mobileMq.matches) return;
+    baseInfoTriggers.forEach((btn) => {
+      const targetId = btn.dataset.infoId;
+      const infoPanel = targetId ? document.getElementById(targetId) : null;
+      if (!infoPanel) return;
+      setupHover(btn, infoPanel);
+    });
+    baseInfoWired = true;
+  }
+
+  wireBaseInfoPanels();
+
+  if (mobileMq.addEventListener) {
+    mobileMq.addEventListener('change', (event) => {
+      if (event.matches) {
+        wireBaseInfoPanels();
+      } else {
+        resetBaseInfoPanels();
+      }
+    });
+  }
 })();

@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1440" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-store" />
   <title>Nummus Hub</title>
   <link rel="stylesheet" href="css/style.css?v=14" />
@@ -27,12 +27,22 @@
       <!-- tubo centro -> destra vuoto (solo collegamento) -->
       <div class="pipe-horizontal pipe-center-right"></div>
 
+      <!-- tubi verticali per la versione mobile -->
+      <div class="pipe-vertical pipe-vertical-top"></div>
+      <div class="pipe-vertical pipe-vertical-bottom"></div>
+      <div class="mobile-backbone">
+        <div class="btc-flow btc-flow--mobile"></div>
+      </div>
+
       <!-- CTA avanzate -->
       <div class="advanced-cta advanced-cta--vault">
         <button class="advanced-button" type="button">Advanced study</button>
         <div class="advanced-panel">
           <p>
             See the <a href="https://happydao.github.io/Nummus.VaultDAO/" target="_blank" rel="noopener noreferrer">advanced dashboard</a> of the swap engine and tBTC vault in detail.
+          </p>
+          <p class="advanced-panel-combined">
+            Explore also the <a href="https://happydao.github.io/Nummus.burn/" target="_blank" rel="noopener noreferrer">advanced burn dashboard</a> with the same view.
           </p>
         </div>
       </div>
@@ -86,7 +96,15 @@
 
             <div class="machine-cap"></div>
             <div class="machine-base">
-            <div class="base-label">Swap Engine</div>
+              <button class="base-label base-info-trigger" data-info-id="swap-info" type="button">Swap Engine</button>
+              <div class="base-info-panel" id="swap-info">
+                <div class="base-info-card">
+                  Specifically, large holders contributed a significant portion of their allocations, which were
+                  <a href="https://app.streamflow.finance/contract/solana/mainnet/9vFKfX2CpvnwVEi7CP4NfHkEuCDa6LMo2GrZpX7KEpf3" target="_blank" rel="noopener noreferrer">locked on Streamflow</a>
+                  under a vesting release mechanism, into the
+                  <a href="https://solscan.io/account/AoXJQjDcK7C28ecdNVQjGjXW8V6nxR7NY7rBFhdhUc5B" target="_blank" rel="noopener noreferrer">Swap Engine portfolio</a>. Swap Engine then automates the accumulation process: every 12 hours, a scheduled swap from Nummus into tBTC is executed, implementing a continuous Dollar-Cost Averaging (DCA) strategy into tBTC. These swaps are routed through optimized DEX pathways, such as Jupiter, to ensure the best possible execution in terms of liquidity and pricing.
+                </div>
+              </div>
           </div>
         </article>
 
@@ -126,7 +144,12 @@
           <div class="vault-btc-badge">₿</div>
           <div class="machine-cap"></div>
           <div class="machine-base">
-            <div class="base-label">tBTC Vault</div>
+            <button class="base-label base-info-trigger" data-info-id="vault-info" type="button">tBTC Vault</button>
+            <div class="base-info-panel" id="vault-info">
+              <div class="base-info-card">
+                All accumulated tBTC is funneled into the Vault, a decentralized, on-chain verifiable treasury collectively owned by Nummus holders. Holders can actively participate in governance directly over the <a href="https://v2.realms.today/dao/2Czvw7p29thfqNJznuicygBKxh33xoCMuGMH7zbPQ2gp/treasury" target="_blank" rel="noopener noreferrer">tBTC treasury via Realms</a>, contributing to the strategic decisions that govern its management and use.
+              </div>
+            </div>
           </div>
         </article>
 
@@ -179,12 +202,18 @@
 
           <div class="machine-cap"></div>
           <div class="machine-base">
-            <div class="base-label">Burn Engine</div>
+            <button class="base-label base-info-trigger" data-info-id="burn-info" type="button">Burn Engine</button>
+            <div class="base-info-panel" id="burn-info">
+              <div class="base-info-card">
+                The Burn Engine is fueled by the Torrino DAO community: trading profits are used to buy back Nummus and send them to the burn address, permanently reducing supply. Join the DAO and contribute to the burn strategy here:
+                <a href="https://happydao.github.io/torrino-dao-hub/" target="_blank" rel="noopener noreferrer">Torrino DAO Hub</a>.
+              </div>
+            </div>
           </div>
         </article>
       </section>
 
-      <!-- descrizioni sotto ai contenitori -->
+      <!-- descrizioni sotto ai contenitori (desktop) -->
       <section class="machines-descriptions">
         <p>
           Specifically, large holders contributed a significant portion of their allocations, which were
@@ -200,6 +229,19 @@
           <a href="https://happydao.github.io/torrino-dao-hub/" target="_blank" rel="noopener noreferrer">Torrino DAO Hub</a>.
         </p>
       </section>
+
+      <!-- CTA mobile unica, in fondo -->
+      <div class="advanced-cta advanced-cta--mobile">
+        <button class="advanced-button" type="button">Advanced study</button>
+        <div class="advanced-panel">
+          <p>
+            See the <a href="https://happydao.github.io/Nummus.VaultDAO/" target="_blank" rel="noopener noreferrer">advanced dashboard</a> of the swap engine and tBTC vault in detail.
+          </p>
+          <p class="advanced-panel-combined">
+            Explore also the <a href="https://happydao.github.io/Nummus.burn/" target="_blank" rel="noopener noreferrer">advanced burn dashboard</a> with the same view.
+          </p>
+        </div>
+      </div>
     </main>
     <footer class="hub-footer">© 2025 Nummus — Hub</footer>
   </div>
