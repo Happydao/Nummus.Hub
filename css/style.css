@@ -1675,8 +1675,19 @@ body {
   margin-top: 42px;
   text-align: center;
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 0.775rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: rgba(222, 214, 194, 0.9);
+}
+
+.hub-footer-link {
+  color: #3aa7ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hub-footer-link:hover,
+.hub-footer-link:focus {
+  color: #68bbff;
 }
