@@ -65,6 +65,24 @@ body {
   opacity: 0.95;
 }
 
+.maintenance-banner {
+  padding: 20px 24px;
+  border: 1px solid rgba(255, 179, 71, 0.6);
+  border-radius: 16px;
+  background: rgba(255, 179, 71, 0.08);
+  color: #f9f9ff;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.maintenance-banner h2 {
+  margin-bottom: 8px;
+  color: var(--accent-orange);
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
 /* Pannello centrale ---------------------------------------- */
 
 .hub-panel {

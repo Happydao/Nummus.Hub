@@ -1,8 +1,8 @@
 name: Sync data from Vault & Burn
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"   # ogni 30 minuti (puoi cambiare)
+  # Scheduled updates are paused during the ZEC transition.
+  # Previous schedule: "*/30 * * * *"
   workflow_dispatch:         # avvio manuale dal tab "Actions"
 
 permissions:
@@ -10,6 +10,9 @@ permissions:
 
 jobs:
   sync:
+    # Keep manual runs from overwriting the November 17, 2026 snapshot.
+    # Remove this guard and restore the schedule only when maintenance ends.
+    if: ${{ false }}
     runs-on: ubuntu-latest
 
     steps:
