@@ -1,18 +1,22 @@
 # Nummus.Hub
-Nummus Hub - tBTC accumulation and supply reduction
+Nummus Hub - ZEC accumulation and supply reduction
 https://happydao.github.io/Nummus.Hub/
 
-## Dashboard maintenance
+## ZEC data
 
-During the community's transition to Zcash (ZEC), all displayed figures and
-transaction lists are frozen at the latest Hub snapshot available on November 17,
-2026 (UTC), commit `dfd43c8b`. The three files in `data/` are restored verbatim
-from that commit. Source timestamps are preserved: Vault status at 09:57 UTC and
-price/supply at 13:58:52 UTC. This Hub has no daily chart or daily time series;
-subsequent visits display the same frozen figures.
+Monitoring resumes from November 22, 2026. The Hub imports ZEC balances, USD
+values and transaction lists from `Happydao/Nummus.VaultDAO/data/status.json`.
+The expected asset is ZEC with Solana mint
+`A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS`; wallet fields are
+`zec_balance`, `zec_usd_value` and `last_zec_transfers`.
+Burn and supply data still come from `Happydao/Nummus.burn`.
 
-The `sync-data.yml` schedule is removed and its job is guarded with `if: ${{ false }}`
-so manual runs also cannot overwrite the snapshot. To resume updates after the
-transition, remove the guard, restore the documented cron schedule, and update
-the dashboard content and maintenance banner together. Linked dashboards are
-managed in their own repositories.
+The sync workflow runs every 30 minutes or manually and validates imported
+JSON before committing. HTTP failures or incompatible asset data stop the sync.
+
+## Historical freeze
+
+November 17–21, 2026 remains the frozen period in the source dashboards.
+The original November 17 Hub snapshot is preserved in Git commit `dfd43c8b`.
+This Hub has no daily chart or time series; it displays the latest imported
+snapshot. Historical series are managed in their source repositories.

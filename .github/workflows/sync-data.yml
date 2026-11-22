@@ -1,8 +1,8 @@
 name: Sync data from Vault & Burn
 
 on:
-  # Scheduled updates are paused during the ZEC transition.
-  # Previous schedule: "*/30 * * * *"
+  schedule:
+    - cron: "*/30 * * * *"
   workflow_dispatch:         # avvio manuale dal tab "Actions"
 
 permissions:
@@ -10,9 +10,6 @@ permissions:
 
 jobs:
   sync:
-    # Keep manual runs from overwriting the November 17, 2026 snapshot.
-    # Remove this guard and restore the schedule only when maintenance ends.
-    if: ${{ false }}
     runs-on: ubuntu-latest
 
     steps:
@@ -25,19 +22,33 @@ jobs:
       - name: Download JSON from other repos
         run: |
           # status.json da Nummus.VaultDAO
-          curl -sS \
+          curl --fail --show-error --silent --location \
             https://raw.githubusercontent.com/Happydao/Nummus.VaultDAO/main/data/status.json \
             -o data/status.json
 
           # burn.json da Nummus.burn
-          curl -sS \
+          curl --fail --show-error --silent --location \
             https://raw.githubusercontent.com/Happydao/Nummus.burn/main/data/burn.json \
             -o data/burn.json
 
           # price.json da Nummus.burn
-          curl -sS \
+          curl --fail --show-error --silent --location \
             https://raw.githubusercontent.com/Happydao/Nummus.burn/main/data/price.json \
             -o data/price.json
+
+      - name: Validate imported data
+        run: |
+          jq -e '
+            .asset == "ZEC" and
+            .mint == "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS" and
+            ([.wallet_1, .vault_wallet_2] | all(
+              (.zec_balance | type == "number") and
+              (.zec_usd_value | type == "number") and
+              (.last_zec_transfers | type == "array")
+            ))
+          ' data/status.json > /dev/null
+          jq -e '.burns | type == "array"' data/burn.json > /dev/null
+          jq -e 'has("burnTotalTokens") and has("totalSupplyTokens")' data/price.json > /dev/null
 
       - name: Commit & push if changed
         run: |

@@ -53,7 +53,7 @@
         typeLine.textContent = isIn ? 'Inflow' : 'Transfer';
       }
 
-      amount.textContent = labelMode === 'burn' ? raw : `${raw} tBTC`;
+      amount.textContent = labelMode === 'burn' ? raw : `${raw} ZEC`;
       if (!isIn) amount.classList.add('out');
 
       const link = document.createElement('a');
@@ -85,19 +85,23 @@
 
     const vault = vaultCandidates.map((k) => data[k]).find(Boolean);
     if (vault && balanceEl && usdEl && listEl) {
-      balanceEl.textContent = formatNumber(vault.tbtc_balance, { minimumFractionDigits: 6, maximumFractionDigits: 6 });
-      usdEl.textContent = formatUsd(vault.tbtc_usd_value);
+      balanceEl.textContent = Number.isFinite(vault.zec_balance)
+        ? formatNumber(vault.zec_balance, { minimumFractionDigits: 6, maximumFractionDigits: 6 })
+        : 'Awaiting ZEC data';
+      usdEl.textContent = Number.isFinite(vault.zec_usd_value) ? formatUsd(vault.zec_usd_value) : '—';
 
-      const transfersAll = Array.isArray(vault.last_tbtc_transfers) ? vault.last_tbtc_transfers : [];
+      const transfersAll = Array.isArray(vault.last_zec_transfers) ? vault.last_zec_transfers : [];
       const transfers = transfersAll.filter((tx) => typeof tx.amount === 'string' && tx.amount.trim().startsWith('+')).slice(0, 12);
       renderTransfers(listEl, transfers);
+      if (!Array.isArray(vault.last_zec_transfers)) listEl.innerHTML = '<li>Awaiting ZEC data</li>';
     }
 
     const swapData = data.wallet_1;
     if (swapData && swapListEl) {
-      const swapsAll = Array.isArray(swapData.last_tbtc_transfers) ? swapData.last_tbtc_transfers : [];
+      const swapsAll = Array.isArray(swapData.last_zec_transfers) ? swapData.last_zec_transfers : [];
       const swaps = swapsAll.slice(0, 12);
       renderTransfers(swapListEl, swaps, { labelMode: 'swap' });
+      if (!Array.isArray(swapData.last_zec_transfers)) swapListEl.innerHTML = '<li>Awaiting ZEC data</li>';
     }
 
     if (burnData && burnListEl) {
