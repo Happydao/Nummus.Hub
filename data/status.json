@@ -2,9 +2,14 @@
   "asset": "ZEC",
   "mint": "A7bdiYdS5GjqGFtxf17ppRHtDKPkkRqbKtR27dxvQXaS",
   "wallet_1": {
-    "zec_balance": 0.26014611,
-    "zec_usd_value": 192.22,
+    "zec_balance": 0.3023757,
+    "zec_usd_value": 218.44,
     "last_zec_transfers": [
+      {
+        "signature": "2rLQRxL9CMpuUbAmX3aEQfLGM4BrQxBha9GqJGbAvSMAZEhrSEyUiQ3b3ZCsygLQvXnXqShvWzeL4j3K6sCRx9Nh",
+        "timestamp": "2026-11-28T08:51:46Z",
+        "amount": "+0.04222959"
+      },
       {
         "signature": "54BhqAP2k61oZBmDwN99FrPCRG5xwkWrCewwqTr8P17hYu5fM9ecF3xYyffQzd2xFLSis3J6ScfVVqQZgWtgit2i",
         "timestamp": "2026-11-28T00:42:08Z",
@@ -149,17 +154,12 @@
         "signature": "38sSqMCqJYdLdgjUXjQgraXZsv3XjSQzJW5tT96uBTbjSdDhXMxfuZJLCPQvuRUbXfkmJooEL9MFrK6u2PgbseoM",
         "timestamp": "2026-11-21T20:53:03Z",
         "amount": "+1.03470442"
-      },
-      {
-        "signature": "2hHLvH2KD4vXzgXWDtzx699bY8z1qmRmHW2hNEbBJNqei7abqyEcoPV13NRyp9d2NKfRsEy8JP4YFegPPZ4UxAtE",
-        "timestamp": "2026-11-21T19:51:23Z",
-        "amount": "+1.0371547"
       }
     ]
   },
   "vault_wallet_2": {
     "zec_balance": 81.0417255,
-    "zec_usd_value": 59882.54,
+    "zec_usd_value": 58545.35,
     "last_zec_transfers": [
       {
         "signature": "3nnmH7BozoQu51gJ171JuzitxQcidcPQcLrSJyrgqGKZNGULtk2iBQLhzk2NzXBGoVGeTkWrY9Tv3WJsEXWrZ6KG",
@@ -238,5 +238,5 @@
       }
     ]
   },
-  "timestamp": "2026-11-28T06:43:40Z"
+  "timestamp": "2026-11-28T15:59:28Z"
 }
